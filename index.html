@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invincible Inc — Professional Security Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0A1628;
+      --navy-mid: #0f1f3d;
+      --navy-light: #162540;
+      --red: #C8102E;
+      --red-dark: #a00d24;
+      --white: #F5F5F0;
+      --gray: #8a9ab5;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Barlow', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--red); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 72px;
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200, 16, 46, 0.2);
+      transition: background 0.3s;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-shield {
+      width: 34px; height: 34px;
+      background: var(--red);
+      clip-path: polygon(50% 0%, 100% 20%, 100% 65%, 50% 100%, 0% 65%, 0% 20%);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-shield::after {
+      content: 'I';
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .btn-quote {
+      background: var(--red);
+      color: white !important;
+      padding: 0.55rem 1.4rem;
+      border-radius: 2px;
+      font-weight: 700 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+
+    .btn-quote:hover {
+      background: var(--red-dark) !important;
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 5% 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(200,16,46,0.08) 0%, transparent 70%),
+        linear-gradient(135deg, #0A1628 0%, #0f1f3d 100%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,16,46,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,16,46,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(200,16,46,0.12);
+      border: 1px solid rgba(200,16,46,0.4);
+      padding: 0.4rem 1rem;
+      border-radius: 2px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #e84060;
+      margin-bottom: 2rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.4); }
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      line-height: 0.92;
+      letter-spacing: 0.03em;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+
+    .hero-title .accent { color: var(--red); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: white;
+      padding: 1rem 2.2rem;
+      border-radius: 2px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(200,16,46,0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(200,16,46,0.45);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      padding: 1rem 2.2rem;
+      border-radius: 2px;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero-stats {
+      position: absolute;
+      right: 5%;
+      bottom: 10%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      z-index: 2;
+    }
+
+    .stat {
+      text-align: right;
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      padding: 100px 5%;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 30px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+
+    .section-body {
+      font-size: 1rem;
+      color: var(--gray);
+      line-height: 1.8;
+      max-width: 640px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,16,46,0.3), transparent);
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--navy-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #about::before {
+      content: 'INVINCIBLE';
+      position: absolute;
+      right: -2%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(6rem, 14vw, 16rem);
+      color: rgba(255,255,255,0.025);
+      pointer-events: none;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .feature-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(200,16,46,0.08);
+      border: 1px solid rgba(200,16,46,0.2);
+      padding: 0.75rem 1rem;
+      border-radius: 2px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .feature-pill::before {
+      content: '✓';
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .shield-large {
+      width: 100%;
+      max-width: 380px;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+      clip-path: polygon(50% 0%, 100% 18%, 100% 65%, 50% 100%, 0% 65%, 0% 18%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      box-shadow: 0 0 80px rgba(200,16,46,0.25);
+      animation: floatShield 6s ease-in-out infinite;
+    }
+
+    @keyframes floatShield {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .shield-inner {
+      font-family: var(--font-display);
+      font-size: 6rem;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      background: var(--navy);
+    }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      background: rgba(200,16,46,0.15);
+      border: 1.5px solid rgba(200,16,46,0.15);
+    }
+
+    .service-card {
+      background: var(--navy);
+      padding: 2.5rem 2rem;
+      transition: background 0.3s, transform 0.3s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0%; height: 2px;
+      background: var(--red);
+      transition: width 0.4s ease;
+    }
+
+    .service-card:hover::after { width: 100%; }
+    .service-card:hover { background: var(--navy-light); }
+
+    .service-icon {
+      width: 48px; height: 48px;
+      margin-bottom: 1.5rem;
+      color: var(--red);
+    }
+
+    .service-icon svg { width: 100%; height: 100%; }
+
+    .service-name {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.75rem;
+      color: var(--white);
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ── INDUSTRIES ── */
+    #industries {
+      background: var(--navy-light);
+    }
+
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 3.5rem;
+    }
+
+    .industry-card {
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 1.8rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: border-color 0.3s, background 0.3s;
+      cursor: default;
+    }
+
+    .industry-card:hover {
+      border-color: rgba(200,16,46,0.4);
+      background: rgba(200,16,46,0.05);
+    }
+
+    .industry-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: rgba(200,16,46,0.25);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .industry-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--white);
+    }
+
+    /* ── AREAS ── */
+    #areas {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .areas-header { margin-bottom: 4rem; }
+
+    .areas-map-wrapper {
+      display: flex;
+      gap: 4rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .areas-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      flex: 1;
+      min-width: 280px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .area-item {
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-right: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s;
+      cursor: default;
+    }
+
+    .area-item:hover {
+      background: rgba(200,16,46,0.07);
+      color: var(--red);
+    }
+
+    .area-item::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .areas-cta {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .ca-badge {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 10rem;
+      color: rgba(200,16,46,0.08);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      user-select: none;
+    }
+
+    /* ── FAQ ── */
+    #faq {
+      background: var(--navy-light);
+    }
+
+    .faq-container {
+      max-width: 760px;
+      margin: 3.5rem auto 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--white);
+      text-align: left;
+      padding: 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      gap: 1rem;
+      transition: color 0.2s;
+    }
+
+    .faq-q:hover { color: var(--red); }
+
+    .faq-icon {
+      width: 22px; height: 22px;
+      border: 1px solid rgba(200,16,46,0.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
+      font-size: 0.9rem;
+      color: var(--red);
+    }
+
+    .faq-item.open .faq-icon {
+      background: var(--red);
+      border-color: var(--red);
+      color: white;
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      font-size: 0.92rem;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding-bottom: 1.5rem;
+    }
+
+    /* ── QUOTE ── */
+    #quote {
+      background: var(--navy);
+    }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .quote-left h2 { margin-bottom: 1rem; }
+
+    .quote-left p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    .contact-row span:first-child {
+      font-size: 1.1rem;
+    }
+
+    .contact-row a {
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-row a:hover { color: var(--white); }
+
+    .quote-form {
+      background: var(--navy-light);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 2.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      padding: 0.85rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 2px;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--red);
+    }
+
+    .form-group select option { background: var(--navy-mid); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 1rem;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      border-radius: 2px;
+      margin-top: 0.5rem;
+    }
+
+    .btn-submit:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060e1a;
+      padding: 4rem 5% 2rem;
+      border-top: 1px solid rgba(200,16,46,0.15);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-top: 1rem;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+      color: var(--white);
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.85rem;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--red); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p {
+      font-size: 0.78rem;
+      color: rgba(138,154,181,0.5);
+    }
+
+    /* ── ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .shield-large { max-width: 220px; }
+      .quote-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .hero-stats { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; background: var(--navy-mid); padding: 2rem 5%; gap: 1.5rem; border-bottom: 1px solid rgba(200,16,46,0.2); }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-features { grid-template-columns: 1fr; }
+      .areas-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="logo">
+      <div class="logo-shield"></div>
+      Invincible Inc
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#industries">Industries</a></li>
+      <li><a href="#areas">Areas</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#quote" class="btn-quote">Get a Quote</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">California's Premier Security Force</div>
+      <h1 class="hero-title">
+        Protection<br>You Can<br><span class="accent">Count On.</span>
+      </h1>
+      <p class="hero-sub">
+        Invincible Inc delivers elite security solutions across California — from armed patrol to fire watch. We safeguard what matters most, 24/7.
+      </p>
+      <div class="hero-ctas">
+        <a href="#quote" class="btn-primary">Get a Free Quote</a>
+        <a href="#services" class="btn-secondary">Our Services</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Always On Duty</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Counties Covered</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Core Services</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div>
+        <div class="section-label reveal">Who We Are</div>
+        <h2 class="section-title reveal reveal-delay-1">Built on Trust.<br>Backed by Results.</h2>
+        <p class="section-body reveal reveal-delay-2">
+          Invincible Inc is a California-based professional security company committed to delivering reliable, trained, and highly responsive security personnel across multiple industries. Our team is built on integrity, discipline, and an unwavering commitment to client safety.
+        </p>
+        <p class="section-body reveal reveal-delay-2" style="margin-top:1rem;">
+          From residential communities to high-value commercial facilities, we tailor our security programs to fit your specific needs — because no two environments are the same.
+        </p>
+        <div class="about-features reveal reveal-delay-3">
+          <div class="feature-pill">Licensed & Insured</div>
+          <div class="feature-pill">Trained Personnel</div>
+          <div class="feature-pill">24/7 Availability</div>
+          <div class="feature-pill">Rapid Response</div>
+          <div class="feature-pill">Statewide Coverage</div>
+          <div class="feature-pill">Custom Programs</div>
+        </div>
+      </div>
+      <div class="about-visual reveal reveal-delay-2">
+        <div class="shield-large">
+          <span class="shield-inner">II</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-header">
+      <div>
+        <div class="section-label reveal">What We Offer</div>
+        <h2 class="section-title reveal reveal-delay-1">Our Services</h2>
+      </div>
+      <p class="section-body reveal reveal-delay-2" style="max-width:360px; text-align:right;">
+        Comprehensive security solutions tailored to your industry and environment.
+      </p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 4L8 12v14c0 9 7 17 16 20 9-3 16-11 16-20V12L24 4z"/>
+            <path d="M16 24l5 5 11-10"/>
+          </svg>
+        </div>
+        <div class="service-name">Unarmed Security</div>
+        <p class="service-desc">Professional unarmed security officers trained for access control, patrol, and incident response — providing a visible deterrent and professional presence.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 4L8 12v14c0 9 7 17 16 20 9-3 16-11 16-20V12L24 4z"/>
+            <circle cx="24" cy="24" r="5"/>
+            <path d="M24 4v7M24 37v7M4 24h7M37 24h7"/>
+          </svg>
+        </div>
+        <div class="service-name">Armed Security</div>
+        <p class="service-desc">Highly trained armed officers for high-risk environments. Our personnel hold all required state certifications and provide maximum deterrence when it matters most.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="34" r="4"/>
+            <circle cx="36" cy="34" r="4"/>
+            <path d="M4 34V20l8-12h20l8 12v14"/>
+            <path d="M16 34h16"/>
+            <path d="M16 20h16"/>
+          </svg>
+        </div>
+        <div class="service-name">Mobile Patrol</div>
+        <p class="service-desc">Regular vehicle patrols across your property or multiple locations, providing visibility and rapid response with detailed patrol reports every shift.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 38V20M8 24l4-4 4 4"/>
+            <path d="M28 10c6 0 10 4 10 10s-4 10-10 10H20V10h8z"/>
+            <path d="M20 30h10c4 0 8 3 8 7H20"/>
+          </svg>
+        </div>
+        <div class="service-name">Fire Watch</div>
+        <p class="service-desc">Certified fire watch services for construction sites, buildings with impaired systems, or hot work operations — keeping your site compliant and protected around the clock.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="24" cy="16" r="8"/>
+            <path d="M8 40c0-8.8 7.2-16 16-16s16 7.2 16 16"/>
+            <path d="M30 30l4 4-4 4"/>
+          </svg>
+        </div>
+        <div class="service-name">Concierge Security</div>
+        <p class="service-desc">Polished, professional security personnel who double as front-of-house ambassadors — combining elite access control with exceptional guest and tenant experience.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- INDUSTRIES -->
+  <section id="industries">
+    <div class="section-label reveal">Who We Protect</div>
+    <h2 class="section-title reveal reveal-delay-1">Industries We Serve</h2>
+    <p class="section-body reveal reveal-delay-2">From gated communities to solar fields, we bring the same elite standard to every environment we protect.</p>
+
+    <div class="industries-grid">
+      <div class="industry-card reveal">
+        <span class="industry-num">01</span>
+        <span class="industry-name">Residential Communities</span>
+      </div>
+      <div class="industry-card reveal reveal-delay-1">
+        <span class="industry-num">02</span>
+        <span class="industry-name">Warehouses & Distribution Centers</span>
+      </div>
+      <div class="industry-card reveal reveal-delay-2">
+        <span class="industry-num">03</span>
+        <span class="industry-name">Financial Institutions</span>
+      </div>
+      <div class="industry-card reveal">
+        <span class="industry-num">04</span>
+        <span class="industry-name">Commercial & Industrial Facilities</span>
+      </div>
+      <div class="industry-card reveal reveal-delay-1">
+        <span class="industry-num">05</span>
+        <span class="industry-name">Solar Energy Facilities</span>
+      </div>
+      <div class="industry-card reveal reveal-delay-2">
+        <span class="industry-num">06</span>
+        <span class="industry-name">Construction Sites</span>
+      </div>
+      <div class="industry-card reveal">
+        <span class="industry-num">07</span>
+        <span class="industry-name">Retail Stores</span>
+      </div>
+      <div class="industry-card reveal reveal-delay-1">
+        <span class="industry-num">08</span>
+        <span class="industry-name">Events & Crowd Control</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- AREAS -->
+  <section id="areas">
+    <div class="areas-header">
+      <div class="section-label reveal">Where We Operate</div>
+      <h2 class="section-title reveal reveal-delay-1">Areas We Serve</h2>
+    </div>
+    <div class="areas-map-wrapper">
+      <div class="areas-list reveal reveal-delay-1">
+        <div class="area-item">Bakersfield</div>
+        <div class="area-item">Los Angeles County</div>
+        <div class="area-item">Fresno County</div>
+        <div class="area-item">Orange County</div>
+        <div class="area-item">Riverside County</div>
+        <div class="area-item">Sacramento</div>
+        <div class="area-item">San Diego County</div>
+        <div class="area-item">Bay Area</div>
+      </div>
+      <div class="areas-cta reveal reveal-delay-2">
+        <div class="ca-badge">CA</div>
+        <p class="section-body" style="margin-top:1rem;">
+          Proudly serving communities across the state of California. Don't see your area? Contact us — we may still be able to help.
+        </p>
+        <a href="#quote" class="btn-primary" style="margin-top:2rem; display:inline-block;">Request Coverage</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div style="text-align:center; max-width:600px; margin:0 auto;">
+      <div class="section-label reveal" style="justify-content:center;">Got Questions</div>
+      <h2 class="section-title reveal reveal-delay-1">Frequently Asked Questions</h2>
+      <p class="section-body reveal reveal-delay-2" style="margin:0 auto;">Everything you need to know before working with us.</p>
+    </div>
+    <div class="faq-container">
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Are your security officers licensed in California?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Yes. All Invincible Inc security personnel hold valid California Bureau of Security and Investigative Services (BSIS) licenses. Our officers are thoroughly vetted, background-checked, and trained to the highest industry standards before deployment.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          What's the difference between armed and unarmed security?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Unarmed officers are ideal for most commercial and residential environments where a professional visible presence is the primary goal. Armed officers are deployed in high-risk environments such as financial institutions, high-value asset locations, or sites requiring elevated deterrence. We'll recommend the right option based on your specific needs and risk assessment.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          How quickly can you deploy security to my location?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          We work hard to accommodate both short-notice and long-term contracts. In many cases, we can have a security officer on-site within 24–48 hours. For planned deployments, we recommend reaching out at least one week in advance so we can ensure the best staffing match for your environment.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Do you offer customized security programs?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Absolutely. Every client is different, which is why we don't use a one-size-fits-all approach. We conduct a full site assessment and work with you to build a security plan that matches your hours, industry, risk level, and budget.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          What areas of California do you serve?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          We currently serve Bakersfield, Los Angeles County, Fresno County, Orange County, Riverside County, Sacramento, San Diego County, and the Bay Area. If you're outside these regions, contact us anyway — we're actively expanding and may be able to accommodate your location.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- QUOTE -->
+  <section id="quote">
+    <div class="quote-grid">
+      <div class="quote-left">
+        <div class="section-label reveal">Work With Us</div>
+        <h2 class="section-title reveal reveal-delay-1">Get a Free Quote</h2>
+        <p class="reveal reveal-delay-2">
+          Ready to secure your property or business? Fill out the form and one of our team members will reach out within 24 hours to discuss your needs.
+        </p>
+        <div class="contact-info reveal reveal-delay-3">
+          <div class="contact-row">
+            <span>📞</span>
+            <a href="tel:+15555550100">(555) 555-0100</a>
+          </div>
+          <div class="contact-row">
+            <span>✉️</span>
+            <a href="mailto:info@invincibleinc.com">info@invincibleinc.com</a>
+          </div>
+          <div class="contact-row">
+            <span>📍</span>
+            <span>Bakersfield, CA (Serving All of California)</span>
+          </div>
+          <div class="contact-row">
+            <span>🕐</span>
+            <span>Available 24/7 — Always On Duty</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-form reveal reveal-delay-2">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="John Smith" />
+          </div>
+          <div class="form-group">
+            <label>Company</label>
+            <input type="text" placeholder="Your Company" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="(555) 000-0000" />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="you@email.com" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select>
+            <option value="" disabled selected>Select a service...</option>
+            <option>Unarmed Security Services</option>
+            <option>Armed Security Services</option>
+            <option>Mobile Patrol Services</option>
+            <option>Fire Watch Services</option>
+            <option>Concierge Security Services</option>
+            <option>Not Sure — Need Consultation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us about your location, hours, and any specific security needs..."></textarea>
+        </div>
+        <button class="btn-submit">Submit Request →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#home" class="logo" style="margin-bottom:0.5rem; display:inline-flex;">
+          <div class="logo-shield"></div>
+          Invincible Inc
+        </a>
+        <p>Professional security services built on discipline, integrity, and an unwavering commitment to keeping California safe.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#industries">Industries</a></li>
+          <li><a href="#areas">Areas We Serve</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+15555550100">(555) 555-0100</a></li>
+          <li><a href="mailto:info@invincibleinc.com">info@invincibleinc.com</a></li>
+          <li><a href="#quote">Get a Quote</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Invincible Inc. All rights reserved.</p>
+      <p>Licensed Security Services — State of California</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-icon').textContent = '+'; });
+        if (!isOpen) { item.classList.add('open'); btn.querySelector('.faq-icon').textContent = '−'; }
+      });
+    });
+
+    // Active nav highlight on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navAs = document.querySelectorAll('.nav-links a:not(.btn-quote)');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+      navAs.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--white)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
