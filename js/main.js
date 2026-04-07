@@ -15,26 +15,38 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ---------- Hamburger / Mobile Menu ---------- */
   const hamburger = document.querySelector('.hamburger');
   const mobileMenu = document.querySelector('.mobile-menu');
-  const mobileClose = document.querySelector('.mobile-close');
+  const mobileCloseButtons = document.querySelectorAll('.mobile-close');
+  const mobileMenuLinks = document.querySelectorAll('.mobile-nav-links a');
 
   function openMobile() {
-    if (!mobileMenu || !hamburger) return;
+    if (!mobileMenu) return;
     mobileMenu.classList.add('active');
-    hamburger.classList.add('open');
+    if (hamburger) {
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    }
     document.body.style.overflow = 'hidden';
   }
   function closeMobile() {
-    if (!mobileMenu || !hamburger) return;
+    if (!mobileMenu) return;
     mobileMenu.classList.remove('active');
-    hamburger.classList.remove('open');
+    if (hamburger) {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
     document.body.style.overflow = '';
   }
 
   if (hamburger) hamburger.addEventListener('click', openMobile);
-  if (mobileClose) mobileClose.addEventListener('click', closeMobile);
+  mobileCloseButtons.forEach(function (button) {
+    button.addEventListener('click', closeMobile);
+  });
+  mobileMenuLinks.forEach(function (link) {
+    link.addEventListener('click', closeMobile);
+  });
   if (mobileMenu) {
     mobileMenu.addEventListener('click', function (e) {
-      if (e.target === mobileMenu) closeMobile();
+      if (e.target === mobileMenu || e.target.closest('.mobile-close')) closeMobile();
     });
   }
   document.addEventListener('keydown', function (e) {

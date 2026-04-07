@@ -20,7 +20,7 @@
   <div class="top-bar">
     <div class="container">
       <div class="top-bar-left">
-        <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.64 5.11 2 2 0 0 1 3.62 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 18z"/></svg></span> <a href="tel:6611234567">661-123-4567</a></span>
+        <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.64 5.11 2 2 0 0 1 3.62 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 18z"/></svg></span> <a href="tel:8773459239">877-345-9239</a></span>
         <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span> <a href="mailto:info@invinciblesecuritygroup.com">info@invinciblesecuritygroup.com</a></span>
       </div>
       <div class="top-bar-right">
@@ -75,19 +75,33 @@
   </nav>
 
   <div class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
-    <button class="mobile-close" aria-label="Close menu">&times;</button>
-    <nav class="mobile-nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="services/unarmed-security.html" class="mobile-sub">&#8250; Unarmed Security</a>
-      <a href="services/armed-security.html" class="mobile-sub">&#8250; Armed Security</a>
-      <a href="services/mobile-patrol.html" class="mobile-sub">&#8250; Mobile Patrol</a>
-      <a href="services/fire-watch.html" class="mobile-sub">&#8250; Fire Watch</a>
-      <a href="services/concierge-security.html" class="mobile-sub">&#8250; Concierge Security</a>
-      <a href="index.html#areas">Areas We Serve</a>
-      <a href="faq.html">FAQ</a>
-      <a href="get-a-quote.html">Contact</a>
-      <a href="get-a-quote.html" class="btn btn-red" style="margin-top:20px;text-align:center;display:block;">Get a Free Quote</a>
+    <button class="mobile-close" type="button" aria-label="Close menu">&times;</button>
+    <nav class="mobile-nav-links" aria-label="Mobile navigation links">
+      <a href="index.html" class="mobile-top-link">Home</a>
+      <a href="about.html" class="mobile-top-link">About Us</a>
+      <div class="mobile-nav-heading">Services</div>
+      <div class="mobile-nav-group" aria-label="Services">
+        <a href="services/unarmed-security.html" class="mobile-sub">Unarmed Security</a>
+        <a href="services/armed-security.html" class="mobile-sub">Armed Security</a>
+        <a href="services/mobile-patrol.html" class="mobile-sub">Mobile Patrol</a>
+        <a href="services/fire-watch.html" class="mobile-sub">Fire Watch</a>
+        <a href="services/concierge-security.html" class="mobile-sub">Concierge Security</a>
+      </div>
+      <div class="mobile-nav-heading">Industries</div>
+      <div class="mobile-nav-group" aria-label="Industries">
+        <a href="industries/residential-communities.html" class="mobile-sub">Residential Communities</a>
+        <a href="industries/warehouses-distribution.html" class="mobile-sub">Warehouses &amp; Distribution</a>
+        <a href="industries/financial-institutions.html" class="mobile-sub">Financial Institutions</a>
+        <a href="industries/commercial-industrial.html" class="mobile-sub">Commercial &amp; Industrial</a>
+        <a href="industries/solar-energy-facilities.html" class="mobile-sub">Solar Energy Facilities</a>
+        <a href="industries/construction-sites.html" class="mobile-sub">Construction Sites</a>
+        <a href="industries/retail-stores.html" class="mobile-sub">Retail Stores</a>
+        <a href="industries/events-crowd-control.html" class="mobile-sub">Events &amp; Crowd Control</a>
+      </div>
+      <a href="index.html#areas" class="mobile-top-link">Areas We Serve</a>
+      <a href="faq.html" class="mobile-top-link">FAQ</a>
+      <a href="get-a-quote.html" class="mobile-top-link">Contact</a>
+      <a href="get-a-quote.html" class="btn btn-red mobile-menu-cta">Get a Free Quote</a>
     </nav>
   </div>
 
@@ -168,8 +182,8 @@
           <div class="reveal rd2">
             <div class="about-box">
               <h3>By the Numbers</h3>
-              <div class="about-stat"><div class="about-stat-num">10+</div><div class="about-stat-txt">Years of Combined Security Management Experience</div></div>
-              <div class="about-stat"><div class="about-stat-num">8+</div><div class="about-stat-txt">California Counties Currently Served</div></div>
+              <div class="about-stat"><div class="about-stat-num">35+</div><div class="about-stat-txt">Years of Combined Security Management Experience</div></div>
+              <div class="about-stat"><div class="about-stat-num">Statewide</div><div class="about-stat-txt">California Coverage</div></div>
               <div class="about-stat" style="margin-bottom:0"><div class="about-stat-num">100%</div><div class="about-stat-txt">BSIS State Compliance — PPO #122748</div></div>
             </div>
           </div>
@@ -229,7 +243,7 @@
         <p>Get in touch today for a free security consultation and custom quote tailored to your property.</p>
         <div class="cta-btns">
           <a href="get-a-quote.html" class="btn btn-red">Get a Free Quote</a>
-          <a href="tel:6611234567" class="btn btn-outline-white">Call 661-123-4567</a>
+          <a href="tel:8773459239" class="btn btn-outline-white">Call 877-345-9239</a>
         </div>
       </div>
     </section>
@@ -246,7 +260,7 @@
           </a>
           <p class="footer-tagline">Protecting People, Property, and Peace of Mind</p>
           <div class="footer-contact-item"><span class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.33-6-11a6 6 0 0 1 12 0c0 5.67-6 11-6 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span>6300 White Lane Suite G<br>Bakersfield, CA 93309</span></div>
-          <div class="footer-contact-item"><span class="fc-icon"><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.64 5.11 2 2 0 0 1 3.62 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 18z"/></svg></span></span><a href="tel:6611234567">661-123-4567</a></div>
+          <div class="footer-contact-item"><span class="fc-icon"><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.64 5.11 2 2 0 0 1 3.62 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 18z"/></svg></span></span><a href="tel:8773459239">877-345-9239</a></div>
           <div class="footer-contact-item"><span class="fc-icon"><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span></span><a href="mailto:info@invinciblesecuritygroup.com">info@invinciblesecuritygroup.com</a></div>
           <div class="footer-contact-item"><span class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span><span>PPO License #122748 | Licensed &amp; Insured</span></div>
         </div>
