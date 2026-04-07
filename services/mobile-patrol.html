@@ -10,10 +10,29 @@
   <meta property="og:description" content="Marked vehicle mobile patrol security for large properties and multi-site clients across California. BSIS licensed. 24/7. PPO #122748." />
   <meta property="og:url" content="https://www.invinciblesecuritygroup.com/services/mobile-patrol.html" />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://invinciblesecuritygroup.com/images/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/styles.css" />
+
+  <!-- Google Analytics 4 -->
+  <script async defer src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript" defer>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "CLARITY_PROJECT_ID");
+  </script>
 </head>
 <body>
 
@@ -150,11 +169,14 @@
     <section class="svc-quote" aria-label="Quick quote"><div class="container"><div class="svc-quote-inner"><h2>Request Mobile Patrol — Fast Response</h2>
       <div class="hero-card" style="box-shadow:var(--shadow-lg);">
         <div class="card-title">Get Your Free Mobile Patrol Quote</div>
-        <form action="#" method="post" novalidate>
+        <form action="/thank-you.html" method="post" data-netlify="true" name="quote-request" novalidate>
+          <input type="hidden" name="bot-field" />
+          <input type="hidden" name="source-page" value="mobile-patrol" />
           <div class="form-row"><div class="form-group"><label for="mp-name">Full Name *</label><input type="text" id="mp-name" name="name" placeholder="Your Name" required /></div><div class="form-group"><label for="mp-phone">Phone *</label><input type="tel" id="mp-phone" name="phone" placeholder="(661) 000-0000" required /></div></div>
           <div class="form-group"><label for="mp-email">Email *</label><input type="email" id="mp-email" name="email" placeholder="you@company.com" required /></div>
           <div class="form-row"><div class="form-group"><label for="mp-city">City</label><input type="text" id="mp-city" name="city" placeholder="Bakersfield" /></div><div class="form-group"><label for="mp-svc">Service</label><select id="mp-svc" name="service"><option value="Mobile Patrol" selected>Mobile Patrol</option><option>Unarmed Security</option><option>Armed Security</option><option>Fire Watch</option><option>Concierge Security</option></select></div></div>
           <div class="form-group"><label for="mp-msg">Tell Us About Your Needs</label><textarea id="mp-msg" name="message" placeholder="Property size, number of locations, hours needed..."></textarea></div>
+          <div data-netlify-recaptcha="true"></div>
           <button type="submit" class="form-submit">Submit Quote Request</button>
           <p class="form-note"><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span> We respond within 2 hours</p>
         </form>

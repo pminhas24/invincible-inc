@@ -10,10 +10,29 @@
   <meta property="og:description" content="Reach Invincible Security Group for California security guard coverage, consultations, and quote requests." />
   <meta property="og:url" content="https://www.invinciblesecuritygroup.com/contact.html" />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://invinciblesecuritygroup.com/images/og-image.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Google Analytics 4 -->
+  <script async defer src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript" defer>
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "CLARITY_PROJECT_ID");
+  </script>
 </head>
 <body>
   <div class="top-bar">
@@ -166,7 +185,9 @@
 
           <div class="quote-form-box">
             <h3>Send Us a Message</h3>
-            <form action="#" method="post" novalidate>
+            <form action="/thank-you.html" method="post" data-netlify="true" name="quote-request" novalidate>
+              <input type="hidden" name="bot-field" />
+              <input type="hidden" name="source-page" value="contact" />
               <div class="form-row">
                 <div class="form-group">
                   <label for="c-name">Full Name *</label>
@@ -209,6 +230,7 @@
                 <label for="c-msg">Message *</label>
                 <textarea id="c-msg" name="message" rows="5" placeholder="Tell us about your security goals, timeline, and property type..." required></textarea>
               </div>
+              <div data-netlify-recaptcha="true"></div>
               <button type="submit" class="form-submit">Send My Message</button>
               <p class="form-note"><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span> We respond within 2 hours | Need pricing now? Visit <a href="get-a-quote.html">Get a Quote</a>.</p>
             </form>
