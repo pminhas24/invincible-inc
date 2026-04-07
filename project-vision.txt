@@ -1,0 +1,301 @@
+CLAUDE CODE PROMPT
+Handles: Homepage, Service pages, shared CSS/JS, SEO foundation, logo, reviews, quote form
+
+Build a complete professional security company website for Invincible Security Group based in Bakersfield, California. This is a full production-ready build optimized for SEO and conversions.
+COMPANY INFO:
+
+Name: Invincible Security Group
+Tagline: Protecting People, Property, and Peace of Mind
+Phone: 661-123-4567
+Email: info@invinciblesecuritygroup.com
+Address: 6300 White Lane Suite G, Bakersfield, CA 93309
+PPO License: #122748
+Target domain: invinciblesecuritygroup.com (not live yet, use as canonical)
+
+
+TECH STACK:
+
+Pure HTML5, CSS3, vanilla JavaScript — no frameworks
+All pages share /css/styles.css and /js/main.js
+Fully responsive — mobile first, breakpoints at 768px and 1100px
+All pages must load fast — no unnecessary libraries except Google Fonts
+
+
+COLOR SCHEME — use CSS variables throughout:
+css--red: #CC0000;
+--red-dark: #A80000;
+--navy: #1B2A4A;
+--white: #FFFFFF;
+--light-gray: #F4F4F4;
+--dark-text: #1A1A1A;
+--gray-text: #555555;
+
+LOGO — CSS only, no image file:
+Recreate the ISG logo in pure CSS/HTML in the navbar:
+
+"ISG" in bold with the I in red and SG in dark navy, styled with a slight italic/slash effect
+Below it: "INVINCIBLE" bold navy, "SECURITY GROUP" smaller gray tracking
+Keep it compact enough for the navbar
+
+
+FILE STRUCTURE:
+invincible-security-group/
+├── index.html
+├── about.html
+├── services/
+│   ├── unarmed-security.html
+│   ├── armed-security.html
+│   ├── mobile-patrol.html
+│   ├── fire-watch.html
+│   └── concierge-security.html
+├── get-a-quote.html
+├── faq.html
+├── css/styles.css
+├── js/main.js
+├── sitemap.xml
+├── robots.txt
+└── images/README.md
+Note: Industry pages will be built separately by another agent — leave nav dropdown links pointing to /industries/[name].html but don't build those files
+
+GLOBAL ELEMENTS (appear on every page):
+Top bar — thin red strip:
+
+Left: 📞 661-123-4567 | ✉ info@invinciblesecuritygroup.com
+Right: PPO License #122748 | Licensed & Insured
+
+Navbar — dark navy background:
+
+Left: ISG CSS logo
+Center links: Home, About Us, Services (dropdown), Industries (dropdown — links only, no pages yet), Areas We Serve (anchor to section on homepage), FAQ, Contact
+Right: bold red "GET A QUOTE" button — always visible
+Sticky on scroll with slight shadow
+Mobile: hamburger with full overlay menu
+
+Floating CTA — fixed right edge of screen:
+
+Vertical red tab, white text "GET A QUOTE" rotated 90deg
+On click: goes to get-a-quote.html
+Visible on all pages, subtle bounce animation on load
+
+Footer:
+
+Column 1: ISG logo, tagline, address, phone, email, PPO license
+Column 2: Quick Links — all nav pages
+Column 3: Services list links
+Bottom bar: © 2025 Invincible Security Group. All Rights Reserved. | Bakersfield, CA
+Dark navy background, white text
+
+
+PAGE 1: index.html — Homepage
+Build every section below in order:
+Section 1 — Hero:
+
+Full viewport height
+Background: dark overlay gradient (left side darker, right side slightly lighter) over a CSS gradient that simulates a dark security operations background. Add HTML comment: <!-- REPLACE: Unsplash security guard photo, search "security guard professional California" -->
+Layout: two columns
+
+LEFT (55%):
+
+Small red badge above headline: "BSIS Licensed | PPO #122748"
+H1: "California's Most Trusted Security Force"
+Subtext: "Protecting people, property, and peace of mind across California. Invincible Security Group delivers professional, BSIS-certified security solutions tailored to your facility's unique needs — 24 hours a day, 7 days a week."
+Two buttons: red "GET A FREE QUOTE" | white outline "OUR SERVICES"
+Trust row below buttons: 4 pills — ✓ BSIS Licensed | ✓ Fully Insured & Bonded | ✓ 24/7 Dispatch | ✓ Serving All California
+
+
+RIGHT (45%):
+
+Floating white card — inline quote request form:
+
+Header: "REQUEST A FREE QUOTE" in red bold
+Fields: Full Name, Phone, Email, City, Service Needed (dropdown of 5 services), Message (short)
+Red submit button: "GET MY FREE QUOTE"
+Below button: small gray text "We respond within 2 hours"
+
+
+Card has subtle shadow and slight upward float animation
+
+
+
+
+
+Section 2 — Trust Bar:
+
+White background
+Single row of 5 stats with red numbers:
+
+24/7 — Always Available
+8+ — Counties Served
+5 — Core Services
+100% — BSIS Compliant
+#1 — Client Satisfaction
+
+
+Thin red top and bottom border on section
+
+Section 3 — About Snapshot:
+
+Light gray background
+Left: large heading "About Invincible Security Group", body copy:
+"Invincible Security Group was founded by security industry veterans with decades of combined experience in security management and operations across California. Our leadership team has overseen large-scale security programs for commercial, industrial, and residential clients — bringing that same level of professionalism and discipline to every contract we take on, regardless of size. We are BSIS licensed, fully insured, bonded, and committed to one thing: keeping your people and property safe."
+Feature list with red checkmarks — use these EXACTLY:
+
+BSIS Licensed and state-compliant
+Fully insured and bonded for your protection
+All officers background-checked and drug-screened
+Professionally trained with ongoing field training
+Custom security plans tailored to your site
+Rapid deployment with 24/7 support
+Real-time reporting and incident documentation
+Active field supervision and quality control
+
+
+Right: red box with "WHY CHOOSE ISG" heading and 3 bold stat highlights
+
+Section 4 — Services:
+
+White background
+Heading: "Our Security Services"
+Subheading: "Comprehensive protection solutions for every environment"
+5 cards in a grid (3 top, 2 bottom centered):
+
+Each card: icon (SVG), service name, 2-line description, red "LEARN MORE →" link to service page
+On hover: red top border appears, slight lift
+Add comment on each card: <!-- REPLACE: Add Unsplash security image as card background or thumbnail -->
+
+
+Services: Unarmed Security, Armed Security, Mobile Patrol, Fire Watch, Concierge Security
+
+Section 5 — Why Choose ISG:
+
+Light gray background
+Big heading: "WHY CHOOSE INVINCIBLE SECURITY GROUP"
+Subheading: "Our experience across industries ensures our clients get the best results"
+8 boxes in a 2-column grid, each with an SVG icon, bold title, and 2-sentence description:
+
+NO LONG-TERM CONTRACTS — Flexible service agreements available on a trial basis. No long-term commitment required to get started.
+FULLY TRAINED SECURITY GUARDS — All officers pass rigorous screening, background checks, drug testing, and complete ongoing field training.
+BSIS LICENSED & STATE-COMPLIANT — Fully licensed under California's Bureau of Security & Investigative Services. PPO License #122748.
+24/7 DISPATCH & SUPPORT — Round-the-clock dispatch center ready to respond. We're always available to take your call.
+REAL-TIME REPORTING — Guards submit live incident reports and activity logs so you always know what's happening on your site.
+FULLY INSURED & BONDED — We carry comprehensive general liability and workers' compensation insurance for complete client protection.
+CUSTOM SECURITY PLANS — Every client gets a tailored security program built around their facility, hours, risk level, and budget.
+ACTIVE FIELD SUPERVISION — Our supervisors conduct regular site visits and quality checks to ensure standards are always met.
+
+
+
+Section 6 — Industries We Serve:
+
+White background
+Heading: "Industries We Serve"
+8 cards in a grid with icon + name + one line description + link to /industries/[name].html
+Industries: Residential Communities, Warehouses & Distribution Centers, Financial Institutions, Commercial & Industrial Facilities, Solar Energy Facilities, Construction Sites, Retail Stores, Events & Crowd Control
+
+Section 7 — Areas We Serve:
+
+Red background, white text
+Heading: "Proudly Serving All of California"
+8 location pills: Bakersfield, Los Angeles County, Fresno County, Orange County, Riverside County, Sacramento, San Diego County, Bay Area
+Below pills: "Don't see your city? Call us — we likely serve your area."
+CTA button: white outline "REQUEST COVERAGE IN YOUR AREA"
+
+Section 8 — Reviews:
+
+Light gray background
+Heading: "What Our Clients Say"
+Subheading: "Read our reviews on Google and Yelp"
+Google and Yelp logo/star badges side by side
+3 review cards, each with:
+
+5 red stars
+Review text (generic but realistic — property manager, warehouse operations manager, event coordinator)
+Reviewer first name + last initial, city
+Small Google or Yelp logo badge on card
+Add HTML comment: <!-- REPLACE: Swap with real reviews via Google/Yelp API later -->
+
+
+
+Section 9 — Our Clients:
+
+White background
+Left label: "OUR CLIENTS" in bold navy with red left border
+Row of 6 placeholder client logo boxes (gray rounded rectangles with "CLIENT LOGO" text) — matching the style from American Global's site
+Add comment: <!-- REPLACE: Add real client logos here -->
+
+Section 10 — Get a Quote CTA Banner:
+
+Navy background
+Large heading: "Ready to Secure Your Property?"
+Subtext: "Contact us today for a free consultation and custom security quote."
+Two buttons: red "GET A FREE QUOTE" | white outline "CALL 661-123-4567"
+
+Section 11 — FAQ preview:
+
+White background
+Show only 3 accordion FAQ items on homepage
+Link below: "See All FAQs →" going to faq.html
+
+
+PAGE 2: about.html
+
+Full about page with: hero banner (navy bg, "About Invincible Security Group"), mission statement, full company story, leadership section (placeholder for photos), the full 8-point checklist, why choose ISG section, and a quote CTA at the bottom
+
+PAGE 3: get-a-quote.html
+
+Hero banner: red background, "Get a Free Security Quote"
+Two column layout:
+
+Left: what to expect after submitting, contact info, address with embedded Google Maps placeholder, hours
+Right: full quote form — Name, Company, Phone, Email, Service (dropdown), City, Number of Guards Needed, Message, Submit
+
+
+
+PAGE 4: faq.html
+
+Hero banner: navy, "Frequently Asked Questions"
+10 accordion FAQ items covering: licensing, armed vs unarmed, deployment time, contracts, insurance, pricing, background checks, California coverage, custom plans, how to get started
+
+PAGES 5–9: Service pages (/services/*.html)
+Each must have:
+
+Hero banner: red background, service name, breadcrumb
+Overview: 3 paragraphs about the service
+6 feature boxes with icons
+"Who Needs This Service" — 4 industry cards
+Why ISG differentiators — 3 boxes
+Red CTA banner
+Pre-filled quote form (service pre-selected in dropdown)
+SEO: unique meta title, description, H1 for each page
+
+
+SEO — apply to every single page:
+
+Unique <title> tag: format = "[Page Topic] | Invincible Security Group | Bakersfield, CA"
+Unique <meta name="description"> — 150-160 chars, include "security guard", "California", "BSIS licensed"
+Proper H1, H2, H3 hierarchy on every page
+All images have descriptive alt text
+Canonical tag pointing to invinciblesecuritygroup.com
+Open Graph tags (og:title, og:description, og:url) on every page
+Schema markup on homepage:
+
+LocalBusiness schema with name, address, phone, geo coordinates, opening hours (24/7)
+Service schema for each service
+
+
+Internal linking: every page links to at least 2 other pages naturally in content
+sitemap.xml listing all pages with priority weights (homepage = 1.0, service pages = 0.9, industry pages = 0.8)
+robots.txt allowing all crawlers
+
+
+ANIMATIONS & JS (main.js):
+
+IntersectionObserver scroll reveal: fade up on all cards and sections
+FAQ accordion
+Sticky navbar with shadow on scroll
+Hamburger menu with overlay
+Smooth scroll for anchor links
+Floating CTA tab pulse animation
+
+
+DO NOT build industry pages — those will be handled by a separate agent simultaneously. Just make sure all nav links and internal links point to the correct /industries/[slug].html paths.
+Initialize git, commit everything with message "initial build - Invincible Security Group". Do NOT push.

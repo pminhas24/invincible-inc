@@ -1,228 +1,203 @@
 /* ============================================================
-   INVINCIBLE INC — main.js
-   Shared JavaScript for all pages
+   INVINCIBLE SECURITY GROUP — main.js
    ============================================================ */
 
-(function () {
-  'use strict';
+document.addEventListener('DOMContentLoaded', function () {
 
-  /* ── Hamburger / Mobile Nav ──────────────────────────── */
-  const hamburger   = document.querySelector('.hamburger');
-  const navMenu     = document.querySelector('.nav-menu');
-  const navOverlay  = document.createElement('div');
-
-  navOverlay.className = 'nav-overlay';
-  navOverlay.style.cssText = `
-    position:fixed; inset:0; background:rgba(0,0,0,0.6);
-    z-index:998; display:none; backdrop-filter:blur(2px);
-  `;
-  document.body.appendChild(navOverlay);
-
-  function openNav() {
-    hamburger.classList.add('open');
-    navMenu.classList.add('open');
-    navOverlay.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    hamburger.setAttribute('aria-expanded', 'true');
-  }
-
-  function closeNav() {
-    hamburger.classList.remove('open');
-    navMenu.classList.remove('open');
-    navOverlay.style.display = 'none';
-    document.body.style.overflow = '';
-    hamburger.setAttribute('aria-expanded', 'false');
-  }
-
-  if (hamburger) {
-    hamburger.addEventListener('click', function () {
-      hamburger.classList.contains('open') ? closeNav() : openNav();
+  /* ---------- Sticky Navbar Shadow ---------- */
+  const navbar = document.querySelector('.navbar');
+  if (navbar) {
+    window.addEventListener('scroll', function () {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
     });
   }
 
-  navOverlay.addEventListener('click', closeNav);
+  /* ---------- Hamburger / Mobile Menu ---------- */
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileClose = document.querySelector('.mobile-close');
 
-  /* ── Mobile Services Dropdown toggle ─────────────────── */
-  const dropdownTrigger = document.querySelector('.nav-item .nav-link[data-has-dropdown]');
-  if (dropdownTrigger) {
-    dropdownTrigger.addEventListener('click', function (e) {
-      if (window.innerWidth <= 640) {
-        e.preventDefault();
-        const dropdown = this.nextElementSibling;
-        if (dropdown) dropdown.classList.toggle('mobile-open');
+  function openMobile() {
+    if (!mobileMenu || !hamburger) return;
+    mobileMenu.classList.add('active');
+    hamburger.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobile() {
+    if (!mobileMenu || !hamburger) return;
+    mobileMenu.classList.remove('active');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (hamburger) hamburger.addEventListener('click', openMobile);
+  if (mobileClose) mobileClose.addEventListener('click', closeMobile);
+  if (mobileMenu) {
+    mobileMenu.addEventListener('click', function (e) {
+      if (e.target === mobileMenu) closeMobile();
+    });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMobile();
+  });
+
+  /* ---------- Desktop Dropdowns ---------- */
+  const dropdownItems = Array.from(document.querySelectorAll('.nav-links > li')).filter(function (item) {
+    return item.querySelector('.dropdown-menu');
+  });
+
+  function closeDropdowns(except) {
+    dropdownItems.forEach(function (item) {
+      if (item !== except) item.classList.remove('is-open');
+    });
+  }
+
+  dropdownItems.forEach(function (item) {
+    const trigger = item.querySelector(':scope > a');
+    if (!trigger) return;
+
+    item.addEventListener('mouseenter', function () {
+      if (window.innerWidth <= 768) return;
+      closeDropdowns(item);
+      item.classList.add('is-open');
+    });
+
+    item.addEventListener('mouseleave', function () {
+      item.classList.remove('is-open');
+      trigger.classList.remove('active');
+    });
+
+    item.addEventListener('focusin', function () {
+      if (window.innerWidth <= 768) return;
+      closeDropdowns(item);
+      item.classList.add('is-open');
+    });
+
+    item.addEventListener('focusout', function (e) {
+      if (!item.contains(e.relatedTarget)) {
+        item.classList.remove('is-open');
+        trigger.classList.remove('active');
       }
     });
-  }
 
-  /* ── Close nav on link click (mobile) ────────────────── */
-  document.querySelectorAll('.nav-link:not([data-has-dropdown]), .dropdown a').forEach(link => {
-    link.addEventListener('click', function () {
-      if (window.innerWidth <= 640) closeNav();
+    trigger.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768) return;
+      if (trigger.getAttribute('href') === '#') {
+        closeDropdowns(item);
+        item.classList.toggle('is-open');
+        trigger.classList.toggle('active', item.classList.contains('is-open'));
+        e.preventDefault();
+      } else {
+        item.classList.remove('is-open');
+        trigger.classList.remove('active');
+      }
     });
   });
 
-  /* ── Scroll Reveal (IntersectionObserver) ────────────── */
-  function initScrollReveal() {
-    const elements = document.querySelectorAll('.reveal');
-    if (!elements.length) return;
-
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.nav-links')) {
+      closeDropdowns();
+      dropdownItems.forEach(function (item) {
+        const trigger = item.querySelector(':scope > a');
+        if (trigger) trigger.classList.remove('active');
       });
-    }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
-    });
+    }
+  });
 
-    elements.forEach(el => observer.observe(el));
-  }
-
-  /* ── FAQ Accordion ───────────────────────────────────── */
-  function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq-item');
-    if (!faqItems.length) return;
-
-    faqItems.forEach(function (item) {
-      const question = item.querySelector('.faq-question');
-      if (!question) return;
-
-      question.addEventListener('click', function () {
-        const isOpen = item.classList.contains('open');
-
-        // Close all
-        faqItems.forEach(i => i.classList.remove('open'));
-
-        // Open clicked (if it wasn't already open)
-        if (!isOpen) {
-          item.classList.add('open');
-        }
+  window.addEventListener('resize', function () {
+    if (window.innerWidth <= 768) {
+      closeDropdowns();
+      dropdownItems.forEach(function (item) {
+        const trigger = item.querySelector(':scope > a');
+        if (trigger) trigger.classList.remove('active');
       });
+    }
+  });
+
+  /* ---------- FAQ Accordion ---------- */
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(function (item) {
+    const btn = item.querySelector('.faq-q');
+    const answer = item.querySelector('.faq-a');
+    if (!btn || !answer) return;
+
+    btn.addEventListener('click', function () {
+      const isOpen = btn.classList.contains('active');
+      // Close all
+      faqItems.forEach(function (i) {
+        i.querySelector('.faq-q').classList.remove('active');
+        const a = i.querySelector('.faq-a');
+        if (a) a.style.maxHeight = '0';
+      });
+      // Open clicked if was closed
+      if (!isOpen) {
+        btn.classList.add('active');
+        answer.style.maxHeight = answer.scrollHeight + 40 + 'px';
+      }
     });
-  }
+  });
 
-  /* ── Floating CTA → scroll to #quote ─────────────────── */
-  function initFloatingCTA() {
-    const floatingLink = document.querySelector('.floating-quote a');
-    if (!floatingLink) return;
-
-    floatingLink.addEventListener('click', function (e) {
-      const target = document.querySelector('#quote');
+  /* ---------- Smooth Scroll for Anchor Links ---------- */
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        closeMobile();
+        const offset = (navbar ? navbar.offsetHeight : 72) + 16;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
       }
     });
-  }
-
-  /* ── Active nav link on scroll (index only) ──────────── */
-  function initActiveNav() {
-    const sections  = document.querySelectorAll('section[id]');
-    const navLinks  = document.querySelectorAll('.nav-link[href^="#"]');
-    if (!sections.length || !navLinks.length) return;
-
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-          });
-        }
-      });
-    }, {
-      threshold: 0.3,
-      rootMargin: '-80px 0px -50% 0px'
-    });
-
-    sections.forEach(section => observer.observe(section));
-  }
-
-  /* ── Sticky top bar + navbar offset for scroll ────────── */
-  function initStickyNav() {
-    const topBar = document.querySelector('.top-bar');
-    const navbar = document.querySelector('.navbar');
-    if (!topBar || !navbar) return;
-
-    function handleScroll() {
-      if (window.scrollY > 60) {
-        topBar.style.display = 'none';
-        navbar.style.position = 'fixed';
-        navbar.style.top = '0';
-        navbar.style.width = '100%';
-      } else {
-        topBar.style.display = '';
-        navbar.style.position = 'sticky';
-        navbar.style.top = '0';
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-  }
-
-  /* ── Quote form: smooth submission feedback ───────────── */
-  function initQuoteForm() {
-    const forms = document.querySelectorAll('.quote-form');
-    forms.forEach(function (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const btn = form.querySelector('.form-submit');
-        const orig = btn.textContent;
-        btn.textContent = 'Sending…';
-        btn.disabled = true;
-
-        setTimeout(function () {
-          btn.textContent = '✓ Request Received!';
-          btn.style.background = '#2a7a2a';
-          setTimeout(function () {
-            btn.textContent = orig;
-            btn.style.background = '';
-            btn.disabled = false;
-            form.reset();
-          }, 3000);
-        }, 1200);
-      });
-    });
-  }
-
-  /* ── Nav Home link active on load ─────────────────────── */
-  function initNavActiveOnLoad() {
-    const path = window.location.pathname.split('/').pop() || 'index.html';
-
-    // Match top-level nav links
-    document.querySelectorAll('.nav-link').forEach(link => {
-      const href = link.getAttribute('href');
-      if (!href) return;
-      const linkFile = href.split('/').pop().split('#')[0] || 'index.html';
-      if (linkFile === path || (path === '' && linkFile === 'index.html')) {
-        link.classList.add('active');
-      }
-    });
-
-    // Mark parent "Services" nav link active if a dropdown child matches
-    document.querySelectorAll('.dropdown a').forEach(link => {
-      const href = link.getAttribute('href');
-      if (!href) return;
-      const linkFile = href.split('/').pop().split('#')[0];
-      if (linkFile === path) {
-        const parentLink = link.closest('.nav-item') && link.closest('.nav-item').querySelector('.nav-link');
-        if (parentLink) parentLink.classList.add('active');
-      }
-    });
-  }
-
-  /* ── Init ─────────────────────────────────────────────── */
-  document.addEventListener('DOMContentLoaded', function () {
-    initScrollReveal();
-    initFAQ();
-    initFloatingCTA();
-    initActiveNav();
-    initStickyNav();
-    initQuoteForm();
-    initNavActiveOnLoad();
   });
 
-})();
+  /* ---------- Scroll Reveal (IntersectionObserver) ---------- */
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && reveals.length) {
+    const revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    reveals.forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    // Fallback: show all
+    reveals.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  /* ---------- Active Nav Link ---------- */
+  const currentPath = window.location.pathname.replace(/\/$/, '');
+  document.querySelectorAll('.nav-links a').forEach(function (link) {
+    const rawHref = link.getAttribute('href') || '';
+    if (!rawHref || rawHref === '#' || rawHref.startsWith('#')) return;
+    const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
+    if (linkPath === currentPath) link.classList.add('active');
+  });
+
+  /* ---------- Form Submissions (prevent default, show message) ---------- */
+  document.querySelectorAll('form').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const btn = form.querySelector('.form-submit, [type="submit"]');
+      if (btn) {
+        const orig = btn.textContent;
+        btn.textContent = 'Message Sent! We\'ll be in touch shortly.';
+        btn.style.background = '#2e7d32';
+        btn.disabled = true;
+        setTimeout(function () {
+          btn.textContent = orig;
+          btn.style.background = '';
+          btn.disabled = false;
+          form.reset();
+        }, 4000);
+      }
+    });
+  });
+
+});
