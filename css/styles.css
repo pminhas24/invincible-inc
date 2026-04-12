@@ -300,10 +300,14 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
 .page-hero p { color: rgba(255,255,255,0.82); font-size: 1.05rem; max-width: 600px; margin-top: 12px; }
 
 /* ---------- Homepage Hero ---------- */
+/* ---------- Homepage Hero ---------- */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(105deg, rgba(10,16,32,0.97) 0%, rgba(27,42,74,0.93) 55%, rgba(27,42,74,0.85) 100%),
-              linear-gradient(180deg, #0d1422 0%, #1b2a4a 100%);
+  /* The linear-gradient creates a dark cinematic overlay, and the url() loads your image */
+  background-image: linear-gradient(105deg, rgba(10,16,32,0.80) 0%, rgba(27,42,74,0.80) 100%), url('../images/hero.png');
+  background-size: 180%;
+  background-position: 20% 60%;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   padding: 100px 0 80px;
