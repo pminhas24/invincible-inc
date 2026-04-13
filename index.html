@@ -98,9 +98,9 @@
   <!-- NAVBAR -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="container">
-<a href="/index.html">
-  <img src="/images/logo-invincible-security-group.png" alt="Invincible Security Group" style="height:55px;width:auto;display:block;">
-</a>
+      <a href="index.html">
+        <img src="images/logo-invincible-security-group.png" alt="Invincible Security Group" style="max-width: 180px; height: auto; margin-top: 20px;">
+      </a>
       <ul class="nav-links" role="list">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About Us</a></li>
@@ -493,34 +493,176 @@
     </section>
 
     <!-- AREAS WE SERVE -->
-<section class="areas-section" id="areas" aria-label="Areas we serve">
-      <div class="container">
-        <div class="areas-layout" style="display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
-          
-          <div class="areas-copy" style="flex: 1; min-width: 300px;">
-            <span class="section-label" style="color:rgba(255,255,255,0.75)">Where We Work</span>
-            <h2>Proudly Serving All of California</h2>
-            <div class="areas-pills">
-              <span class="area-pill">Bakersfield</span>
-              <span class="area-pill">Los Angeles County</span>
-              <span class="area-pill">Fresno County</span>
-              <span class="area-pill">Orange County</span>
-              <span class="area-pill">Riverside County</span>
-              <span class="area-pill">Sacramento</span>
-              <span class="area-pill">San Diego County</span>
-              <span class="area-pill">Bay Area</span>
-            </div>
-            <p class="areas-note">Don't see your city? Call us — we likely serve your area.</p>
-            <a href="get-a-quote.html" class="btn btn-outline-white">Request Coverage in Your Area</a>
-          </div>
-
-          <div class="areas-map reveal" aria-hidden="true" style="flex: 1; display: flex; justify-content: flex-end; align-items: center; min-width: 300px;">
-            <img src="images/usa-ca.svg" alt="California Map" style="width: 100%; max-width: 250px; height: auto; opacity: 0.25;">
-          </div>
-
-        </div>
+<section class="areas-serve" style="padding: 80px 0; background-color: #cc0000; color: #ffffff; position: relative; overflow: hidden;">
+  <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+    
+    <div class="map-text-panel" style="flex: 1; min-width: 350px; max-width: 600px; z-index: 2;">
+      <h5 style="font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; opacity: 0.9; font-weight: 700;">Where We Work</h5>
+      <h2 style="font-size: 3rem; margin-bottom: 30px; font-weight: 800; line-height: 1.2;">Proudly Serving All of California</h2>
+      
+      <div class="service-pills" style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 35px;">
+        <span style="border: 1px solid rgba(255,255,255,0.4); border-radius: 50px; padding: 8px 20px; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.05);">Bakersfield</span>
+        <span style="border: 1px solid rgba(255,255,255,0.4); border-radius: 50px; padding: 8px 20px; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.05);">Los Angeles County</span>
+        <span style="border: 1px solid rgba(255,255,255,0.4); border-radius: 50px; padding: 8px 20px; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.05);">Fresno County</span>
+        <span style="border: 1px solid rgba(255,255,255,0.4); border-radius: 50px; padding: 8px 20px; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.05);">Orange County</span>
+        <span style="border: 1px solid rgba(255,255,255,0.4); border-radius: 50px; padding: 8px 20px; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.05);">Riverside County</span>
+        <span style="border: 1px solid rgba(255,255,255,0.4); border-radius: 50px; padding: 8px 20px; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.05);">Sacramento</span>
+        <span style="border: 1px solid rgba(255,255,255,0.4); border-radius: 50px; padding: 8px 20px; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.05);">San Diego County</span>
+        <span style="border: 1px solid rgba(255,255,255,0.4); border-radius: 50px; padding: 8px 20px; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.05);">Bay Area</span>
+        <span style="border: 1px solid rgba(255,255,255,0.4); border-radius: 50px; padding: 8px 20px; font-weight: 600; font-size: 0.95rem; background: rgba(255,255,255,0.05);">San Jose</span>
       </div>
-    </section>
+
+      <p style="margin-bottom: 25px; font-size: 1.05rem; opacity: 0.9;">Don't see your city? Call us — we likely serve your area.</p>
+      
+      <a href="get-a-quote.html" style="display: inline-block; padding: 14px 28px; background-color: transparent; border: 2px solid #ffffff; color: #ffffff; text-decoration: none; font-weight: bold; border-radius: 4px; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#ffffff'; this.style.color='#cc0000';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#ffffff';">REQUEST COVERAGE IN YOUR AREA</a>
+    </div>
+
+    <div id="interactive-map-container" style="flex: 1.2; min-width: 350px; max-width: 650px; height: 600px; position: relative; z-index: 1;">
+      </div>
+
+  </div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const containerId = '#interactive-map-container';
+      const container = d3.select(containerId);
+      
+      // Clear out any old detached maps before drawing
+      container.selectAll('*').remove();
+
+      const width = container.node().getBoundingClientRect().width;
+      const height = container.node().getBoundingClientRect().height;
+
+      const svg = container.append('svg')
+        .attr('width', '100%')
+        .attr('height', '100%')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .style('overflow', 'visible');
+
+      const tooltip = d3.select('body').append('div')
+        .attr('class', 'map-tooltip')
+        .style('position', 'absolute')
+        .style('padding', '10px 14px')
+        .style('background', '#111827')
+        .style('color', '#fff')
+        .style('border-radius', '6px')
+        .style('font-size', '15px')
+        .style('font-weight', 'bold')
+        .style('pointer-events', 'none')
+        .style('opacity', 0)
+        .style('z-index', 1000)
+        .style('box-shadow', '0 10px 15px -3px rgba(0, 0, 0, 0.4)');
+
+      const caPathData = "M103.5 125.8C103.5 125.8 116.5 28.5 116.5 28.5C116.5 28.5 282.8 28.5 282.8 28.5C282.8 28.5 282.8 243.8 282.8 243.8C282.8 243.8 593.5 561.8 593.5 561.8C593.5 561.8 593.5 613.5 593.5 613.5C593.5 613.5 632.5 647.5 632.5 647.5C632.5 647.5 649.5 683.5 649.5 683.5C649.5 683.5 683.5 683.5 683.5 683.5C683.5 683.5 733.5 733.5 733.5 733.5C733.5 733.5 753.5 733.5 753.5 733.5C753.5 733.5 765.5 765.5 765.5 765.5C765.5 765.5 765.5 825.5 765.5 825.5C765.5 825.5 735.5 825.5 735.5 825.5C735.5 825.5 725.5 813.5 725.5 813.5C725.5 813.5 683.5 813.5 683.5 813.5C683.5 813.5 673.5 825.5 673.5 825.5C673.5 825.5 633.5 825.5 633.5 825.5C633.5 825.5 613.5 803.5 613.5 803.5C613.5 803.5 593.5 793.5 593.5 793.5C593.5 793.5 573.5 773.5 573.5 773.5C573.5 773.5 553.5 773.5 553.5 773.5C553.5 773.5 523.5 763.5 523.5 763.5C523.5 763.5 493.5 763.5 493.5 763.5C493.5 763.5 463.5 743.5 463.5 743.5C463.5 743.5 433.5 743.5 433.5 743.5C433.5 743.5 393.5 703.5 393.5 703.5C393.5 703.5 363.5 703.5 363.5 703.5C363.5 703.5 333.5 663.5 333.5 663.5C333.5 663.5 313.5 663.5 313.5 663.5C313.5 663.5 283.5 633.5 283.5 633.5C283.5 633.5 263.5 633.5 263.5 633.5C263.5 633.5 243.5 603.5 243.5 603.5C243.5 603.5 213.5 583.5 213.5 583.5C213.5 583.5 183.5 553.5 183.5 553.5C183.5 553.5 163.5 523.5 163.5 523.5C163.5 523.5 153.5 493.5 153.5 493.5C153.5 493.5 133.5 473.5 133.5 473.5C133.5 473.5 123.5 453.5 123.5 453.5C123.5 453.5 103.5 423.5 103.5 423.5C103.5 423.5 93.5 393.5 93.5 393.5C93.5 393.5 83.5 363.5 83.5 363.5C83.5 363.5 73.5 333.5 73.5 333.5C73.5 333.5 83.5 313.5 83.5 313.5C83.5 313.5 83.5 283.5 83.5 283.5C83.5 283.5 73.5 253.5 73.5 253.5C73.5 253.5 63.5 223.5 63.5 223.5C63.5 223.5 53.5 203.5 53.5 203.5C53.5 203.5 63.5 183.5 63.5 183.5C63.5 183.5 83.5 153.5 83.5 153.5C83.5 153.5 103.5 125.8 103.5 125.8Z";
+
+      // --- EASY CONTROLS FOR ZOOM AND POSITION ---
+      // 1. ZOOM: Start at 1.8. Increase to make the map bigger.
+      const scale = 9.5; 
+      
+      // 2. LEFT/RIGHT: Increase to move Right. Decrease to move Left.
+      const shiftX = 7000; 
+      
+      // 3. UP/DOWN: Increase to move Down. Decrease to move Up.
+      const shiftY = 3500; 
+      // -------------------------------------------
+
+      const tx = (width / 2) + shiftX;
+      const ty = (height / 2) + shiftY;
+
+      // This is the MASTER layer. The map AND the dots live inside this now!
+      const mapGroup = svg.append('g')
+        .attr('transform', `translate(${tx}, ${ty}) scale(${scale})`);
+
+      // Draw California
+      mapGroup.append('path')
+        .attr('d', caPathData)
+        // Adjust the map so its mathematical center is at 0,0
+        .attr('transform', `translate(-400, -400)`) 
+        .style('fill', 'rgba(0, 0, 0, 0.15)')
+        .style('stroke', 'rgba(255, 255, 255, 0.35)')
+        .style('stroke-width', 2 / scale);
+
+      // Defining the Dot Locations (Calibrated)
+      const locations = [
+        { name: 'Bakersfield', x: 450, y: 580, isPrimary: true },
+        { name: 'Los Angeles County', x: 520, y: 660, isPrimary: true },
+        { name: 'Fresno County', x: 360, y: 480, isPrimary: true },
+        { name: 'Orange County', x: 550, y: 680, isPrimary: true },
+        { name: 'Riverside County', x: 600, y: 670, isPrimary: true },
+        { name: 'Sacramento', x: 260, y: 310, isPrimary: true },
+        { name: 'San Diego County', x: 620, y: 750, isPrimary: true },
+        { name: 'Bay Area', x: 150, y: 360, isPrimary: true },
+        { name: 'San Jose', x: 180, y: 390, isPrimary: true },
+        
+        { name: 'Redding', x: 190, y: 150 }, { name: 'Chico', x: 220, y: 220 }, 
+        { name: 'Santa Rosa', x: 140, y: 330 }, { name: 'Stockton', x: 280, y: 370 }, { name: 'Modesto', x: 300, y: 400 },
+        { name: 'Salinas', x: 230, y: 460 }, { name: 'San Luis Obispo', x: 320, y: 580 }, { name: 'Santa Barbara', x: 410, y: 640 },
+        { name: 'Ventura', x: 460, y: 650 }, { name: 'San Bernardino', x: 580, y: 650 }, { name: 'Palm Springs', x: 650, y: 690 },
+        { name: 'El Centro', x: 700, y: 800 }, { name: 'Visalia', x: 400, y: 510 }, { name: 'Merced', x: 340, y: 430 },
+        { name: 'Monterey', x: 210, y: 450 }, { name: 'Santa Cruz', x: 180, y: 430 }, { name: 'Napa', x: 180, y: 340 }
+      ];
+
+      // CRITICAL FIX: Markers are now attached to mapGroup, minus the 400px center offset!
+      const markers = mapGroup.selectAll('.marker-group')
+        .data(locations)
+        .enter()
+        .append('g')
+        .attr('class', 'marker-group')
+        .attr('transform', d => `translate(${d.x - 400}, ${d.y - 400})`)
+        .style('cursor', 'pointer');
+
+      // MASSIVE White Glowing Aura
+      markers.append('circle')
+        .attr('class', 'aura')
+        .attr('r', d => d.isPrimary ? 10 : 6) 
+        .style('fill', 'rgba(255, 255, 255, 0.5)')
+        .style('opacity', 0);
+
+      // MASSIVE Solid White Inner Dot
+      markers.append('circle')
+        .attr('class', 'dot')
+        .attr('r', d => d.isPrimary ? 6 : 4)
+        .style('fill', '#ffffff')
+        .style('stroke', '#cc0000') 
+        .style('stroke-width', 1.5); 
+
+      // Interaction
+      markers.on('mouseover', function(event, d) {
+        d3.select(this).select('.dot')
+          .transition().duration(200).attr('r', d.isPrimary ? 9 : 6);
+          
+        tooltip.transition().duration(200).style('opacity', 1);
+        tooltip.html(d.name)
+          .style('left', (event.pageX + 15) + 'px')
+          .style('top', (event.pageY - 28) + 'px');
+      }).on('mouseout', function(event, d) {
+        d3.select(this).select('.dot')
+          .transition().duration(300).attr('r', d.isPrimary ? 6 : 4);
+        tooltip.transition().duration(500).style('opacity', 0);
+      });
+
+      // FASTER Pulse Animation
+      anime({
+        targets: '.aura',
+        r: [
+          { value: el => parseFloat(el.getAttribute('r')) * 1, duration: 0 },
+          { value: el => parseFloat(el.getAttribute('r')) * 3.5, duration: 600, easing: 'easeOutSine' }, // Very fast pulse!
+          { value: el => parseFloat(el.getAttribute('r')) * 1, duration: 800, easing: 'easeInSine' }
+        ],
+        opacity: [
+          { value: 0.8, duration: 0 },
+          { value: 0, duration: 600, easing: 'easeOutSine' },
+          { value: 0, duration: 800, easing: 'linear' }
+        ],
+        loop: true
+      });
+
+    });
+  </script>
+</section>
 
     <!-- REVIEWS -->
     <section class="reviews-section" aria-label="Client reviews">
@@ -672,47 +814,16 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer" role="contentinfo">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <a href="/index.html">
-            <img src="/images/logo-invincible-security-group.png" alt="Invincible Security Group" style="height:55px;width:auto;display:block;">
-          </a>
-        </div>
-        <div class="footer-col">
-          <p class="footer-tagline">Protecting People, Property, and Peace of Mind</p>
-          <div class="footer-contact-item"><span class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.33-6-11a6 6 0 0 1 12 0c0 5.67-6 11-6 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span>6300 White Lane Suite G<br>Bakersfield, CA 93309</span></div>
-          <div class="footer-contact-item"><span class="fc-icon"><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.64 5.11 2 2 0 0 1 3.62 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 18z"/></svg></span></span><a href="tel:8773459239">877-345-9239</a></div>
-          <div class="footer-contact-item"><span class="fc-icon"><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span></span><a href="mailto:info@invinciblesecuritygroup.com">info@invinciblesecuritygroup.com</a></div>
-          <div class="footer-contact-item"><span class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span><span>PPO License #122748 | Licensed &amp; Insured</span></div>
-        </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <nav class="footer-links" aria-label="Footer quick links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="services/unarmed-security.html">Services</a>
-            <a href="#areas">Areas We Serve</a>
-            <a href="faq.html">FAQ</a>
-            <a href="get-a-quote.html">Contact Us</a>
-            <a href="get-a-quote.html">Get a Quote</a>
-          </nav>
-        </div>
-        <div class="footer-col">
-          <h4>Our Services</h4>
-          <nav class="footer-links" aria-label="Footer services links">
-            <a href="services/unarmed-security.html">Unarmed Security</a>
-            <a href="services/armed-security.html">Armed Security</a>
-            <a href="services/mobile-patrol.html">Mobile Patrol</a>
-            <a href="services/fire-watch.html">Fire Watch</a>
-            <a href="services/concierge-security.html">Concierge Security</a>
-          </nav>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom"><div class="container">&copy; 2026 Invincible Security Group. All Rights Reserved. | Bakersfield, CA | <a href="/privacy-policy.html" style="color:inherit;">Privacy Policy</a> | <a href="/terms-conditions.html" style="color:inherit;">Terms &amp; Conditions</a> | <a href="/cookie-policy.html" style="color:inherit;">Cookie Policy</a></div></div>
-  </footer>
+<div id="global-footer"></div>
+
+    <script>
+      fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('global-footer').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading footer:', error));
+    </script>
 
   <script src="js/main.js"></script>
 </body>
