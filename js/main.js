@@ -193,23 +193,37 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ---------- Form Submissions (prevent default, show message) ---------- */
-  document.querySelectorAll('form').forEach(function (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const btn = form.querySelector('.form-submit, [type="submit"]');
+document.querySelectorAll('form[data-netlify="true"]').forEach(function(form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const btn = form.querySelector('.form-submit, [type="submit"]');
+    const formData = new FormData(form);
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(function() {
+      window.location.href = '/thank-you.html';
+    })
+    .catch(function(error) {
       if (btn) {
-        const orig = btn.textContent;
-        btn.textContent = 'Message Sent! We\'ll be in touch shortly.';
-        btn.style.background = '#2e7d32';
-        btn.disabled = true;
-        setTimeout(function () {
-          btn.textContent = orig;
+        btn.textContent = 'Something went wrong. Please call us at 877-345-9239';
+        btn.style.background = '#cc0000';
+        setTimeout(function() {
+          btn.textContent = 'Submit Request';
           btn.style.background = '';
-          btn.disabled = false;
-          form.reset();
         }, 4000);
       }
     });
+
+    if (btn) {
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+    }
   });
+});
 
 });
