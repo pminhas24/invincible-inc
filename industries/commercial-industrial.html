@@ -147,15 +147,12 @@
     <script>
       // Using an absolute path starting with /invincible-inc-copy/ 
       // guarantees it finds the footer file from any folder!
-      fetch('/invincible-inc-copy/footer.html')
-        .then(response => {
-          if (!response.ok) throw new Error('Network response was not ok');
-          return response.text();
-        })
-        .then(data => {
-          document.getElementById('global-footer').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading footer:', error));
+fetch('/invincible-inc-copy/footer.html')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('global-footer').innerHTML = data;
+  })
+  .catch(error => console.error('Error loading footer:', error));
     </script>
 
   <script src="../js/main.js"></script>
