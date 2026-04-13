@@ -418,7 +418,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
 .services-section { background: var(--white); padding: 96px 0; }
 .svc-grid-wrap { display: flex; flex-direction: column; gap: 28px; }
 .svc-row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-.svc-row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 780px; margin: 0 auto; }
+.svc-row-2 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .svc-card { border: 1.5px solid #e8e8e8; border-radius: 10px; padding: 36px 28px; transition: all var(--transition); border-top: 4px solid transparent; background: var(--white); }
 .svc-card:hover { border-top-color: var(--red); transform: translateY(-5px); box-shadow: var(--shadow-lg); }
 /* REPLACE: Add Unsplash security image as card background or thumbnail */
