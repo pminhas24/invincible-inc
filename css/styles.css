@@ -179,7 +179,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
 
 /* Hamburger */
 .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; cursor: pointer; }
-.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
 .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
@@ -208,7 +208,8 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 2;
+  z-index: 9999;
+  padding: 10px;
 }
 .mobile-nav-links { display: flex; flex-direction: column; gap: 4px; }
 .mobile-nav-links a { display: block; padding: 13px 0; font-size: 1.05rem; font-weight: 600; color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.10); transition: color 0.2s; }
@@ -499,7 +500,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
 
 /* ---------- Client Logos ---------- */
 .clients-section { background: var(--white); padding: 64px 0; }
-.clients-inner { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+.clients-inner { display: flex; align-items: center; gap: 40px; flex-wrap: wrap;}
 .clients-label { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); border-left: 4px solid var(--red); padding-left: 14px; line-height: 1.5; flex-shrink: 0; }
 .clients-logos { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; flex: 1; }
 /* REPLACE: Add real client logos here */
@@ -660,7 +661,19 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
   .why-grid { grid-template-columns: 1fr; }
   .ind-grid { grid-template-columns: repeat(2, 1fr); }
   .reviews-grid { grid-template-columns: 1fr; }
-  .clients-inner { flex-direction: column; align-items: flex-start; }
+  .clients-inner { 
+  flex-direction: row; 
+  flex-wrap: wrap; 
+  justify-content: center;
+  gap: 16px;
+}
+
+.client-logo-item {
+  width: calc(50% - 16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   .areas-layout { grid-template-columns: 1fr; gap: 28px; }
   .areas-copy { text-align: center; }
   .areas-pills { justify-content: center; }
@@ -1003,6 +1016,18 @@ svg { max-width: 44px; height: auto; display: inline-block; }
   animation-play-state: paused;
 }
 
+@keyframes reviewsTicker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 768px) {
+  .reviews-track {
+    gap: 18px;
+    animation-duration: 40s;
+  }
+}
+
 .reviews-slide {
   flex: 0 0 clamp(280px, 30vw, 360px);
 }
@@ -1070,4 +1095,17 @@ svg { max-width: 44px; height: auto; display: inline-block; }
   .reviews-slide {
     flex-basis: min(82vw, 320px);
   }
+}
+
+.input-error {
+  border-color: #cc0000 !important;
+  background: rgba(204, 0, 0, 0.04) !important;
+}
+
+.field-error {
+  display: block;
+  color: #cc0000;
+  font-size: 0.78rem;
+  margin-top: 4px;
+  font-weight: 500;
 }

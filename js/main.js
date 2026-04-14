@@ -4,6 +4,101 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  /* ---------- Form Validation & Submission ---------- */
+
+  /* ---------- Phone Number Formatting ---------- */
+  document.querySelectorAll('input[type="tel"]').forEach(function(phone) {
+    phone.addEventListener('input', function() {
+      let digits = phone.value.replace(/\D/g, '').slice(0, 10);
+      if (digits.length >= 7) {
+        phone.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+      } else if (digits.length >= 4) {
+        phone.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3);
+      } else if (digits.length > 0) {
+        phone.value = '(' + digits;
+      }
+    });
+  });
+  
+  document.querySelectorAll('form[data-netlify="true"]').forEach(function(form) {
+
+    form.querySelectorAll('input, select, textarea').forEach(function(field) {
+      field.addEventListener('invalid', function(e) {
+        e.preventDefault();
+        field.classList.add('input-error');
+
+        let msg = '';
+        if (field.validity.valueMissing) msg = 'This field is required';
+        else if (field.validity.typeMismatch && field.type === 'email') msg = 'Please enter a valid email address';
+        else if (field.validity.patternMismatch && field.name === 'phone') msg = 'Please enter a valid phone number e.g. (661) 000-0000';
+        else if (field.validity.tooShort) msg = 'Please enter at least ' + field.minLength + ' characters';
+        else msg = field.title || 'Please fill out this field correctly';
+
+        let errorEl = field.parentElement.querySelector('.field-error');
+        if (!errorEl) {
+          errorEl = document.createElement('span');
+          errorEl.className = 'field-error';
+          field.parentElement.appendChild(errorEl);
+        }
+        errorEl.textContent = msg;
+      });
+
+      field.addEventListener('input', function() {
+        field.classList.remove('input-error');
+        const errorEl = field.parentElement.querySelector('.field-error');
+        if (errorEl) errorEl.remove();
+      });
+
+      field.addEventListener('change', function() {
+        field.classList.remove('input-error');
+        const errorEl = field.parentElement.querySelector('.field-error');
+        if (errorEl) errorEl.remove();
+      });
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.querySelectorAll('input, select, textarea').forEach(function(field) {
+          if (!field.checkValidity()) {
+            field.dispatchEvent(new Event('invalid'));
+          }
+        });
+        return;
+      }
+
+      const btn = form.querySelector('.form-submit, [type="submit"]');
+      const formData = new FormData(form);
+
+      if (btn) {
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+      }
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(function() {
+        window.location.href = '/thank-you.html';
+      })
+      .catch(function() {
+        if (btn) {
+          btn.textContent = 'Something went wrong. Please call us at 877-345-9239';
+          btn.style.background = '#cc0000';
+          setTimeout(function() {
+            btn.textContent = 'Submit Request';
+            btn.style.background = '';
+            btn.disabled = false;
+          }, 4000);
+        }
+      });
+    });
+
+  });
+
   /* ---------- Sticky Navbar Shadow ---------- */
   const navbar = document.querySelector('.navbar');
   if (navbar) {
@@ -135,13 +230,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     btn.addEventListener('click', function () {
       const isOpen = btn.classList.contains('active');
-      // Close all
       faqItems.forEach(function (i) {
         i.querySelector('.faq-q').classList.remove('active');
         const a = i.querySelector('.faq-a');
         if (a) a.style.maxHeight = '0';
       });
-      // Open clicked if was closed
       if (!isOpen) {
         btn.classList.add('active');
         answer.style.maxHeight = answer.scrollHeight + 40 + 'px';
@@ -179,7 +272,6 @@ document.addEventListener('DOMContentLoaded', function () {
     );
     reveals.forEach(function (el) { revealObserver.observe(el); });
   } else {
-    // Fallback: show all
     reveals.forEach(function (el) { el.classList.add('visible'); });
   }
 
@@ -191,39 +283,5 @@ document.addEventListener('DOMContentLoaded', function () {
     const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
     if (linkPath === currentPath) link.classList.add('active');
   });
-
-  /* ---------- Form Submissions (prevent default, show message) ---------- */
-document.querySelectorAll('form[data-netlify="true"]').forEach(function(form) {
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const btn = form.querySelector('.form-submit, [type="submit"]');
-    const formData = new FormData(form);
-
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString()
-    })
-    .then(function() {
-      window.location.href = '/thank-you.html';
-    })
-    .catch(function(error) {
-      if (btn) {
-        btn.textContent = 'Something went wrong. Please call us at 877-345-9239';
-        btn.style.background = '#cc0000';
-        setTimeout(function() {
-          btn.textContent = 'Submit Request';
-          btn.style.background = '';
-        }, 4000);
-      }
-    });
-
-    if (btn) {
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-    }
-  });
-});
 
 });
