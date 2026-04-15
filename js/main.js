@@ -133,15 +133,22 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if (hamburger) hamburger.addEventListener('click', openMobile);
-  mobileCloseButtons.forEach(function (button) {
-    button.addEventListener('click', closeMobile);
+
+  document.querySelectorAll('.mobile-close').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      closeMobile();
+    });
   });
+
   mobileMenuLinks.forEach(function (link) {
     link.addEventListener('click', closeMobile);
   });
+
   if (mobileMenu) {
     mobileMenu.addEventListener('click', function (e) {
-      if (e.target === mobileMenu || e.target.closest('.mobile-close')) closeMobile();
+      if (e.target === mobileMenu) closeMobile();
     });
   }
   document.addEventListener('keydown', function (e) {
