@@ -5,7 +5,8 @@
       "Bash(git commit -m ':*)",
       "Bash(ls:*)",
       "Bash(grep -l \"dropdown-menu\" /c/xampp/htdocs/invincible-inc/*.html /c/xampp/htdocs/invincible-inc/services/*.html /c/xampp/htdocs/invincible-inc/industries/*.html)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(grep *)"
     ]
   }
 }
