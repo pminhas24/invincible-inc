@@ -18,6 +18,20 @@ document.addEventListener('DOMContentLoaded', function () {
         phone.value = '(' + digits;
       }
     });
+    /* ---------- Block non-numeric keys on phone fields ---------- */
+  document.querySelectorAll('input[type="tel"]').forEach(function(phone) {
+    phone.addEventListener('keydown', function(e) {
+      var allowed = [
+        'Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft',
+        'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'
+      ];
+      if (allowed.indexOf(e.key) !== -1) return;
+      if (e.ctrlKey || e.metaKey) return;
+      if (!/^\d$/.test(e.key)) {
+        e.preventDefault();
+      }
+    });
+  });
   });
   
   document.querySelectorAll('form[data-netlify="true"]').forEach(function(form) {
