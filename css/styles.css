@@ -198,8 +198,8 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
 
 /* Nav is-open active link */
 .nav-links > li.is-open > a {
-  color: var(--white);
-  background: rgba(255,255,255,0.08);
+  color: var(--red);
+  background: rgba(204,0,0,0.06);
 }
 
 /* Hamburger */

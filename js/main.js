@@ -4,119 +4,10 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---------- Form Validation & Submission ---------- */
-
-  /* ---------- Phone Number Formatting ---------- */
-  document.querySelectorAll('input[type="tel"]').forEach(function(phone) {
-    phone.addEventListener('input', function() {
-      let digits = phone.value.replace(/\D/g, '').slice(0, 10);
-      if (digits.length >= 7) {
-        phone.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
-      } else if (digits.length >= 4) {
-        phone.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3);
-      } else if (digits.length > 0) {
-        phone.value = '(' + digits;
-      }
-    });
-    /* ---------- Block non-numeric keys on phone fields ---------- */
-  document.querySelectorAll('input[type="tel"]').forEach(function(phone) {
-    phone.addEventListener('keydown', function(e) {
-      var allowed = [
-        'Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft',
-        'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'
-      ];
-      if (allowed.indexOf(e.key) !== -1) return;
-      if (e.ctrlKey || e.metaKey) return;
-      if (!/^\d$/.test(e.key)) {
-        e.preventDefault();
-      }
-    });
-  });
-  });
-  
-  document.querySelectorAll('form[data-netlify="true"]').forEach(function(form) {
-
-    form.querySelectorAll('input, select, textarea').forEach(function(field) {
-      field.addEventListener('invalid', function(e) {
-        e.preventDefault();
-        field.classList.add('input-error');
-
-        let msg = '';
-        if (field.validity.valueMissing) msg = 'This field is required';
-        else if (field.validity.typeMismatch && field.type === 'email') msg = 'Please enter a valid email address';
-        else if (field.validity.patternMismatch && field.name === 'phone') msg = 'Please enter a valid phone number e.g. (661) 000-0000';
-        else if (field.validity.tooShort) msg = 'Please enter at least ' + field.minLength + ' characters';
-        else msg = field.title || 'Please fill out this field correctly';
-
-        let errorEl = field.parentElement.querySelector('.field-error');
-        if (!errorEl) {
-          errorEl = document.createElement('span');
-          errorEl.className = 'field-error';
-          field.parentElement.appendChild(errorEl);
-        }
-        errorEl.textContent = msg;
-      });
-
-      field.addEventListener('input', function() {
-        field.classList.remove('input-error');
-        const errorEl = field.parentElement.querySelector('.field-error');
-        if (errorEl) errorEl.remove();
-      });
-
-      field.addEventListener('change', function() {
-        field.classList.remove('input-error');
-        const errorEl = field.parentElement.querySelector('.field-error');
-        if (errorEl) errorEl.remove();
-      });
-    });
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      if (!form.checkValidity()) {
-        form.querySelectorAll('input, select, textarea').forEach(function(field) {
-          if (!field.checkValidity()) {
-            field.dispatchEvent(new Event('invalid'));
-          }
-        });
-        return;
-      }
-
-      const btn = form.querySelector('.form-submit, [type="submit"]');
-      const formData = new FormData(form);
-
-      if (btn) {
-        btn.textContent = 'Sending...';
-        btn.disabled = true;
-      }
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      })
-      .then(function() {
-        window.location.href = '/thank-you.html';
-      })
-      .catch(function() {
-        if (btn) {
-          btn.textContent = 'Something went wrong. Please call us at 877-345-9239';
-          btn.style.background = '#cc0000';
-          setTimeout(function() {
-            btn.textContent = 'Submit Request';
-            btn.style.background = '';
-            btn.disabled = false;
-          }, 4000);
-        }
-      });
-    });
-
-  });
-
   /* ---------- Sticky Navbar Shadow ---------- */
   const navbar = document.querySelector('.navbar');
   if (navbar) {
-    window.addEventListener('scroll', function () {
+    window.addEventListener('scroll', function() {
       navbar.classList.toggle('scrolled', window.scrollY > 10);
     });
   }
@@ -124,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ---------- Hamburger / Mobile Menu ---------- */
   const hamburger = document.querySelector('.hamburger');
   const mobileMenu = document.querySelector('.mobile-menu');
-  const mobileCloseButtons = document.querySelectorAll('.mobile-close');
   const mobileMenuLinks = document.querySelectorAll('.mobile-nav-links a');
 
   function openMobile() {
@@ -242,6 +132,115 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  /* ---------- Form Validation & Submission ---------- */
+
+  /* ---------- Phone Number Formatting ---------- */
+  document.querySelectorAll('input[type="tel"]').forEach(function(phone) {
+    phone.addEventListener('input', function() {
+      let digits = phone.value.replace(/\D/g, '').slice(0, 10);
+      if (digits.length >= 7) {
+        phone.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+      } else if (digits.length >= 4) {
+        phone.value = '(' + digits.slice(0,3) + ') ' + digits.slice(3);
+      } else if (digits.length > 0) {
+        phone.value = '(' + digits;
+      }
+    });
+    /* ---------- Block non-numeric keys on phone fields ---------- */
+  document.querySelectorAll('input[type="tel"]').forEach(function(phone) {
+    phone.addEventListener('keydown', function(e) {
+      var allowed = [
+        'Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft',
+        'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'
+      ];
+      if (allowed.indexOf(e.key) !== -1) return;
+      if (e.ctrlKey || e.metaKey) return;
+      if (!/^\d$/.test(e.key)) {
+        e.preventDefault();
+      }
+    });
+  });
+  });
+
+  document.querySelectorAll('form[data-netlify="true"]').forEach(function(form) {
+
+    form.querySelectorAll('input, select, textarea').forEach(function(field) {
+      field.addEventListener('invalid', function(e) {
+        e.preventDefault();
+        field.classList.add('input-error');
+
+        let msg = '';
+        if (field.validity.valueMissing) msg = 'This field is required';
+        else if (field.validity.typeMismatch && field.type === 'email') msg = 'Please enter a valid email address';
+        else if (field.validity.patternMismatch && field.name === 'phone') msg = 'Please enter a valid phone number e.g. (661) 000-0000';
+        else if (field.validity.tooShort) msg = 'Please enter at least ' + field.minLength + ' characters';
+        else msg = field.title || 'Please fill out this field correctly';
+
+        let errorEl = field.parentElement.querySelector('.field-error');
+        if (!errorEl) {
+          errorEl = document.createElement('span');
+          errorEl.className = 'field-error';
+          field.parentElement.appendChild(errorEl);
+        }
+        errorEl.textContent = msg;
+      });
+
+      field.addEventListener('input', function() {
+        field.classList.remove('input-error');
+        const errorEl = field.parentElement.querySelector('.field-error');
+        if (errorEl) errorEl.remove();
+      });
+
+      field.addEventListener('change', function() {
+        field.classList.remove('input-error');
+        const errorEl = field.parentElement.querySelector('.field-error');
+        if (errorEl) errorEl.remove();
+      });
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.querySelectorAll('input, select, textarea').forEach(function(field) {
+          if (!field.checkValidity()) {
+            field.dispatchEvent(new Event('invalid'));
+          }
+        });
+        return;
+      }
+
+      const btn = form.querySelector('.form-submit, [type="submit"]');
+      const formData = new FormData(form);
+
+      if (btn) {
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+      }
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(function() {
+        window.location.href = '/thank-you.html';
+      })
+      .catch(function() {
+        if (btn) {
+          btn.textContent = 'Something went wrong. Please call us at 877-345-9239';
+          btn.style.background = '#cc0000';
+          setTimeout(function() {
+            btn.textContent = 'Submit Request';
+            btn.style.background = '';
+            btn.disabled = false;
+          }, 4000);
+        }
+      });
+    });
+
+  });
+
   /* ---------- FAQ Accordion ---------- */
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(function (item) {
@@ -296,13 +295,30 @@ document.addEventListener('DOMContentLoaded', function () {
     reveals.forEach(function (el) { el.classList.add('visible'); });
   }
 
-  /* ---------- Active Nav Link ---------- */
-  const currentPath = window.location.pathname.replace(/\/$/, '');
-  document.querySelectorAll('.nav-links a').forEach(function (link) {
-    const rawHref = link.getAttribute('href') || '';
-    if (!rawHref || rawHref === '#' || rawHref.startsWith('#')) return;
-    const linkPath = new URL(link.href, window.location.origin).pathname.replace(/\/$/, '');
-    if (linkPath === currentPath) link.classList.add('active');
-  });
+/* ---------- Active Nav Link ---------- */
+var currentPath = window.location.pathname.replace(/\/$/, '');
+var currentHash = window.location.hash;
+
+document.querySelectorAll('.nav-links a').forEach(function (link) {
+  link.classList.remove('active');
+
+  var rawHref = link.getAttribute('href') || '';
+  if (!rawHref || rawHref === '#') return;
+
+  var linkUrl = new URL(link.href, window.location.href);
+  var linkPath = linkUrl.pathname.replace(/\/$/, '');
+  var linkHash = linkUrl.hash;
+
+  if (currentHash) {
+    if (linkPath === currentPath && linkHash === currentHash) {
+      link.classList.add('active');
+    }
+    return;
+  }
+
+  if (!linkHash && linkPath === currentPath) {
+    link.classList.add('active');
+  }
+});
 
 });

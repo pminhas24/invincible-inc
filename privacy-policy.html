@@ -39,24 +39,19 @@
   </script>
 </head>
 <body>
-  <div class="top-bar">
+    <div class="top-bar">
     <div class="container">
       <div class="top-bar-left">
         <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6 19.79 19.79 0 0 1 1.64 5.11 2 2 0 0 1 3.62 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 18z"/></svg></span> <a href="tel:8773459239">877-345-9239</a></span>
         <span><span class="icon-inline" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span> <a href="mailto:info@invinciblesecuritygroup.com">info@invinciblesecuritygroup.com</a></span>
       </div>
-      <div class="top-bar-right">
-        <span>PPO License #122748</span>
-        <span>&#124;</span>
-        <span>Licensed &amp; Insured</span>
-      </div>
+      <div class="top-bar-right"><span>PPO License #122748</span><span>&#124;</span><span>Licensed &amp; Insured</span></div>
     </div>
   </div>
-
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="container">
       <a href="index.html">
-        <img src="images/logo-new.png" alt="Invincible Security Group" width="110" height="63" style="max-width:110px;height:auto;margin-top:0px;">
+        <img src="images/e102dfe4-6f83-4324-9a41-e594656ff006 (1).png" alt="Invincible Security Group" width="110" style="max-width:110px;height:auto;margin-top:0px;">
       </a>
       <ul class="nav-links" role="list">
         <li><a href="index.html">Home</a></li>
@@ -99,7 +94,6 @@
       <button class="hamburger" aria-label="Open mobile menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
-
   <div class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
     <button class="mobile-close" type="button" aria-label="Close menu">&times;</button>
     <nav class="mobile-nav-links" aria-label="Mobile navigation links">
@@ -206,7 +200,7 @@
       <p>Depending on your location, you may have certain rights with respect to your personal information, including the right to access, correct, or delete your data. To exercise these rights, please contact us using the information provided below.</p>
 
       <h2>California Privacy Rights (CCPA/CPRA)</h2>
-      <p>If you are a California resident, you have specific rights under the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA), including the right to know what personal information we collect, the right to delete your personal information, the right to opt out of the sale or sharing of your personal information, and the right to non-discrimination for exercising these rights. To submit a California privacy rights request, please contact us at <a href="mailto:info@invinciblesecuritygroup.com">info@invinciblesecuritygroup.com</a>.</p>
+      <p>If you are a California resident, you have specific rights under the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA), including the right to know what personal information we collect, the right to delete your personal information, the right to opt out of the sale or sharing of your personal information, and the right to non-discrimination for exercising these rights. To submit a California privacy rights request, please contact us at <a href="mailto:privacy@invincibleSecurityGroup.com">privacy@invincibleSecurityGroup.com</a>.</p>
       <p>We do not sell personal information to third parties.</p>
 
       <h2>Children's Privacy</h2>
@@ -221,22 +215,11 @@
       <h2>Contact Information</h2>
       <p>If you have questions or concerns about this Privacy Policy or our data practices, please contact us at:</p>
       <ul>
-        <li><strong>Email:</strong> <a href="mailto:info@invinciblesecuritygroup.com">info@invinciblesecuritygroup.com</a></li>
+        <li><strong>Email:</strong> <a href="mailto:Privacy@invincibleSecurityGroup.com">Privacy@invincibleSecurityGroup.com</a></li>
         <li><strong>Phone:</strong> <a href="tel:8773459239">877-345-9239</a></li>
         <li><strong>Address:</strong> 6300 White Lane Suite G, Bakersfield, CA 93309</li>
       </ul>
 
-      <h2>SMS Communications Terms</h2>
-      <p style="background: #f4f4f4; border-left: 4px solid #CC0000; padding: 16px 20px; font-weight: 600; color: #1A1A1A;">
-        No mobile information will be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.
-      </p>
-      <p>By providing your mobile phone number and opting in to receive SMS communications from Invincible Security Group, you consent to receive text messages related to your inquiry, quote request, or service agreement. Consent to receive SMS communications is not a condition of using our services.</p>
-      <ul>
-        <li>To opt out of SMS communications, reply <strong>STOP</strong> to any message at any time.</li>
-        <li>For help, reply <strong>HELP</strong> to any message or contact us at <a href="mailto:info@invinciblesecuritygroup.com">info@invinciblesecuritygroup.com</a>.</li>
-        <li>Standard message and data rates may apply depending on your carrier plan.</li>
-        <li>Consent to receive SMS communications is not required to use our security services.</li>
-      </ul>
     </div>
   </main>
 
@@ -245,7 +228,23 @@
 <script>
   fetch('footer.html')
     .then(function(r){ if(!r.ok) throw new Error('Footer not found'); return r.text(); })
-    .then(function(d){ document.getElementById('global-footer').innerHTML = d; })
+    .then(function(d){
+      document.getElementById('global-footer').innerHTML = d;
+      if (window.location.hostname === 'localhost') {
+        document.querySelectorAll('#global-footer a[href^="/"]').forEach(function(a) {
+          var h = a.getAttribute('href');
+          if (!h.startsWith('/invincible-inc-copy')) {
+            a.setAttribute('href', '/invincible-inc-copy' + h);
+          }
+        });
+        document.querySelectorAll('#global-footer img[src^="/"]').forEach(function(img) {
+          var s = img.getAttribute('src');
+          if (!s.startsWith('/invincible-inc-copy')) {
+            img.setAttribute('src', '/invincible-inc-copy' + s);
+          }
+        });
+      }
+    })
     .catch(function(e){ console.error('Footer error:', e); });
 </script>
 
