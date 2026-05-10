@@ -6,7 +6,19 @@
       "Bash(ls:*)",
       "Bash(grep -l \"dropdown-menu\" /c/xampp/htdocs/invincible-inc/*.html /c/xampp/htdocs/invincible-inc/services/*.html /c/xampp/htdocs/invincible-inc/industries/*.html)",
       "Bash(python3:*)",
-      "Bash(grep *)"
+      "Bash(grep *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\xampp\\\\htdocs\\\\invincible-inc-copy\" -Recurse -File)",
+      "Bash(Select-Object -Property FullName, Length)",
+      "Bash(ConvertTo-Json)",
+      "Bash(Out-String)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\xampp\\\\htdocs\\\\invincible-inc-copy\" -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object FullName, @{N=\"SizeKB\";E={[math]::Round\\($_.Length/1KB, 2\\)}} | Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\xampp\\\\htdocs\\\\invincible-inc-copy\\\\images\" -File | Select-Object Name, @{N=\"SizeKB\";E={[math]::Round\\($_.Length/1KB, 2\\)}} | Format-Table -AutoSize)",
+      "Bash(python -c \"from PIL import Image; print\\('pillow ok'\\)\")",
+      "Bash(node -e \"require\\('sharp'\\); console.log\\('sharp ok'\\)\")",
+      "Bash(pip3 install *)",
+      "Bash(python -c \"from PIL import Image; print\\('ok'\\)\")",
+      "Read(//c/Users/sarda/AppData/Roaming/Python//**)",
+      "Bash(python *)"
     ]
   }
 }

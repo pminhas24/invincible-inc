@@ -148,12 +148,12 @@ FOOTER_IND = '''  <footer class="footer" role="contentinfo">
   <script src="../js/main.js"></script>'''
 
 ANALYTICS = '''  <!-- Google Analytics 4 -->
-  <script async defer src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-EG7JCG2R1Z"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'GA_MEASUREMENT_ID');
+    gtag('config', 'G-EG7JCG2R1Z');
   </script>
 
   <!-- Microsoft Clarity -->
@@ -162,7 +162,7 @@ ANALYTICS = '''  <!-- Google Analytics 4 -->
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "CLARITY_PROJECT_ID");
+    })(window, document, "clarity", "script", "wkg1a7mvwq");
   </script>'''
 
 def build_service_card(title, desc, link, icon_svg, delay=''):
