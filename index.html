@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
   <title>Security Guard Services Bakersfield CA | Invincible Security Group | PPO #122748</title>
   <meta name="description" content="Invincible Security Group — BSIS licensed security guard services in Bakersfield, CA. Armed, unarmed, mobile patrol, fire watch & concierge security. PPO #122748. Call 877-345-9239." />
   <link rel="canonical" href="https://www.invinciblesecuritygroup.com/" />
@@ -14,7 +19,8 @@
   <meta name="google-site-verification" content="GSC_VERIFICATION_CODE" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" /></noscript>
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="preload" as="image" href="images/hero.webp" fetchpriority="high" />
   <script type="application/ld+json">
@@ -63,12 +69,6 @@
 
   <!-- Google Analytics 4 -->
     <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-EG7JCG2R1Z"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-EG7JCG2R1Z');
-     </script>
 
   <!-- Microsoft Clarity -->
   <script type="text/javascript" defer>
@@ -93,7 +93,7 @@
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="container">
       <a href="index.html">
-        <img src="images/e102dfe4-6f83-4324-9a41-e594656ff006 (1).webp" alt="Invincible Security Group" width="110" height="70" style="max-width:110px;height:auto;margin-top:0px;">
+        <img src="images/e102dfe4-6f83-4324-9a41-e594656ff006 (1).webp" alt="Invincible Security Group" width="110" height="70" style="max-width:110px;height:auto;aspect-ratio:880/559;margin-top:0px;">
       </a>
       <ul class="nav-links" role="list">
         <li><a href="index.html">Home</a></li>
@@ -531,140 +531,117 @@
 
   </div>
 
-  <script src="https://d3js.org/d3.v7.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const containerId = '#interactive-map-container';
-      const container = d3.select(containerId);
-      
-      // Clear out any old detached maps before drawing
-      container.selectAll('*').remove();
+<script>
+(function () {
+  var mapEl = document.getElementById('interactive-map-container');
+  if (!mapEl) return;
+  var loaded = false;
+  var io = new IntersectionObserver(function (entries) {
+    if (!entries[0].isIntersecting || loaded) return;
+    loaded = true;
+    io.disconnect();
+    var s = document.createElement('script');
+    s.src = 'https://d3js.org/d3.v7.min.js';
+    s.onload = function () {
+      var a = document.createElement('script');
+      a.src = 'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js';
+      a.onload = initMap;
+      document.head.appendChild(a);
+    };
+    document.head.appendChild(s);
+  }, { rootMargin: '400px' });
+  io.observe(mapEl);
 
-      const width = container.node().getBoundingClientRect().width;
-      const height = container.node().getBoundingClientRect().height;
-
-      const svg = container.append('svg')
-        .attr('width', '100%')
-        .attr('height', '100%')
-        .attr('viewBox', `0 0 ${width} ${height}`)
-        .style('overflow', 'visible');
-
-      const tooltip = d3.select('body').append('div')
-        .attr('class', 'map-tooltip')
-        .style('position', 'absolute')
-        .style('padding', '10px 14px')
-        .style('background', '#111827')
-        .style('color', '#fff')
-        .style('border-radius', '6px')
-        .style('font-size', '15px')
-        .style('font-weight', 'bold')
-        .style('pointer-events', 'none')
-        .style('opacity', 0)
-        .style('z-index', 1000)
-        .style('box-shadow', '0 10px 15px -3px rgba(0, 0, 0, 0.4)');
-
-      const caPathData = "M103.5 125.8C103.5 125.8 116.5 28.5 116.5 28.5C116.5 28.5 282.8 28.5 282.8 28.5C282.8 28.5 282.8 243.8 282.8 243.8C282.8 243.8 593.5 561.8 593.5 561.8C593.5 561.8 593.5 613.5 593.5 613.5C593.5 613.5 632.5 647.5 632.5 647.5C632.5 647.5 649.5 683.5 649.5 683.5C649.5 683.5 683.5 683.5 683.5 683.5C683.5 683.5 733.5 733.5 733.5 733.5C733.5 733.5 753.5 733.5 753.5 733.5C753.5 733.5 765.5 765.5 765.5 765.5C765.5 765.5 765.5 825.5 765.5 825.5C765.5 825.5 735.5 825.5 735.5 825.5C735.5 825.5 725.5 813.5 725.5 813.5C725.5 813.5 683.5 813.5 683.5 813.5C683.5 813.5 673.5 825.5 673.5 825.5C673.5 825.5 633.5 825.5 633.5 825.5C633.5 825.5 613.5 803.5 613.5 803.5C613.5 803.5 593.5 793.5 593.5 793.5C593.5 793.5 573.5 773.5 573.5 773.5C573.5 773.5 553.5 773.5 553.5 773.5C553.5 773.5 523.5 763.5 523.5 763.5C523.5 763.5 493.5 763.5 493.5 763.5C493.5 763.5 463.5 743.5 463.5 743.5C463.5 743.5 433.5 743.5 433.5 743.5C433.5 743.5 393.5 703.5 393.5 703.5C393.5 703.5 363.5 703.5 363.5 703.5C363.5 703.5 333.5 663.5 333.5 663.5C333.5 663.5 313.5 663.5 313.5 663.5C313.5 663.5 283.5 633.5 283.5 633.5C283.5 633.5 263.5 633.5 263.5 633.5C263.5 633.5 243.5 603.5 243.5 603.5C243.5 603.5 213.5 583.5 213.5 583.5C213.5 583.5 183.5 553.5 183.5 553.5C183.5 553.5 163.5 523.5 163.5 523.5C163.5 523.5 153.5 493.5 153.5 493.5C153.5 493.5 133.5 473.5 133.5 473.5C133.5 473.5 123.5 453.5 123.5 453.5C123.5 453.5 103.5 423.5 103.5 423.5C103.5 423.5 93.5 393.5 93.5 393.5C93.5 393.5 83.5 363.5 83.5 363.5C83.5 363.5 73.5 333.5 73.5 333.5C73.5 333.5 83.5 313.5 83.5 313.5C83.5 313.5 83.5 283.5 83.5 283.5C83.5 283.5 73.5 253.5 73.5 253.5C73.5 253.5 63.5 223.5 63.5 223.5C63.5 223.5 53.5 203.5 53.5 203.5C53.5 203.5 63.5 183.5 63.5 183.5C63.5 183.5 83.5 153.5 83.5 153.5C83.5 153.5 103.5 125.8 103.5 125.8Z";
-
-const isMobile = window.innerWidth < 768;
-const scale = isMobile ? 4.3 : 9.5;
-const shiftX = isMobile ? 1500 : 7000;
-const shiftY = isMobile ? 1700 : 3500;
-
-      const tx = (width / 2) + shiftX;
-      const ty = (height / 2) + shiftY;
-
-      // This is the MASTER layer. The map AND the dots live inside this now!
-      const mapGroup = svg.append('g')
-        .attr('transform', `translate(${tx}, ${ty}) scale(${scale})`);
-
-      // Draw California
-      mapGroup.append('path')
-        .attr('d', caPathData)
-        // Adjust the map so its mathematical center is at 0,0
-        .attr('transform', `translate(-400, -400)`) 
-        .style('fill', 'rgba(0, 0, 0, 0.15)')
-        .style('stroke', 'rgba(255, 255, 255, 0.35)')
-        .style('stroke-width', 2 / scale);
-
-      // Defining the Dot Locations (Calibrated)
-      const locations = [
-        { name: 'Bakersfield', x: 450, y: 580, isPrimary: true },
-        { name: 'Los Angeles County', x: 520, y: 660, isPrimary: true },
-        { name: 'Fresno County', x: 360, y: 480, isPrimary: true },
-        { name: 'Orange County', x: 550, y: 680, isPrimary: true },
-        { name: 'Riverside County', x: 600, y: 670, isPrimary: true },
-        { name: 'Sacramento', x: 260, y: 310, isPrimary: true },
-        { name: 'San Diego County', x: 620, y: 750, isPrimary: true },
-        { name: 'Bay Area', x: 150, y: 360, isPrimary: true },
-        { name: 'San Jose', x: 180, y: 390, isPrimary: true },
-        
-        { name: 'Redding', x: 190, y: 150 }, { name: 'Chico', x: 220, y: 220 }, 
-        { name: 'Santa Rosa', x: 140, y: 330 }, { name: 'Stockton', x: 280, y: 370 }, { name: 'Modesto', x: 300, y: 400 },
-        { name: 'Salinas', x: 230, y: 460 }, { name: 'San Luis Obispo', x: 320, y: 580 }, { name: 'Santa Barbara', x: 410, y: 640 },
-        { name: 'Ventura', x: 460, y: 650 }, { name: 'San Bernardino', x: 580, y: 650 }, { name: 'Palm Springs', x: 650, y: 690 },
-        { name: 'El Centro', x: 700, y: 800 }, { name: 'Visalia', x: 400, y: 510 }, { name: 'Merced', x: 340, y: 430 },
-        { name: 'Monterey', x: 210, y: 450 }, { name: 'Santa Cruz', x: 180, y: 430 }, { name: 'Napa', x: 180, y: 340 }
-      ];
-
-      // CRITICAL FIX: Markers are now attached to mapGroup, minus the 400px center offset!
-      const markers = mapGroup.selectAll('.marker-group')
-        .data(locations)
-        .enter()
-        .append('g')
-        .attr('class', 'marker-group')
-        .attr('transform', d => `translate(${d.x - 455}, ${d.y - 400})`)
-        .style('cursor', 'pointer');
-
-      // MASSIVE White Glowing Aura
-      markers.append('circle')
-        .attr('class', 'aura')
-        .attr('r', d => d.isPrimary ? 10 : 6) 
-        .style('fill', 'rgba(255, 255, 255, 0.5)')
-        .style('opacity', 0);
-
-      // MASSIVE Solid White Inner Dot
-      markers.append('circle')
-        .attr('class', 'dot')
-        .attr('r', d => d.isPrimary ? 6 : 4)
-        .style('fill', '#ffffff')
-        .style('stroke', '#cc0000') 
-        .style('stroke-width', 1.5); 
-
-      // Interaction
-      markers.on('mouseover', function(event, d) {
-        d3.select(this).select('.dot')
-          .transition().duration(200).attr('r', d.isPrimary ? 9 : 6);
-          
-        tooltip.transition().duration(200).style('opacity', 1);
-        tooltip.html(d.name)
-          .style('left', (event.pageX + 15) + 'px')
-          .style('top', (event.pageY - 28) + 'px');
-      }).on('mouseout', function(event, d) {
-        d3.select(this).select('.dot')
-          .transition().duration(300).attr('r', d.isPrimary ? 6 : 4);
-        tooltip.transition().duration(500).style('opacity', 0);
-      });
-
-      // FASTER Pulse Animation
-      anime({
-        targets: '.aura',
-        r: [
-          { value: el => parseFloat(el.getAttribute('r')) * 1, duration: 0 },
-          { value: el => parseFloat(el.getAttribute('r')) * 3.5, duration: 600, easing: 'easeOutSine' }, // Very fast pulse!
-          { value: el => parseFloat(el.getAttribute('r')) * 1, duration: 800, easing: 'easeInSine' }
-        ],
-        opacity: [
-          { value: 0.8, duration: 0 },
-          { value: 0, duration: 600, easing: 'easeOutSine' },
-          { value: 0, duration: 800, easing: 'linear' }
-        ],
-        loop: true
-      });
-
+  function initMap() {
+    var containerId = '#interactive-map-container';
+    var container = d3.select(containerId);
+    container.selectAll('*').remove();
+    var width = container.node().getBoundingClientRect().width;
+    var height = container.node().getBoundingClientRect().height;
+    var svg = container.append('svg')
+      .attr('width', '100%').attr('height', '100%')
+      .attr('viewBox', '0 0 ' + width + ' ' + height)
+      .style('overflow', 'visible');
+    var tooltip = d3.select('body').append('div')
+      .attr('class', 'map-tooltip')
+      .style('position', 'absolute').style('padding', '10px 14px')
+      .style('background', '#111827').style('color', '#fff')
+      .style('border-radius', '6px').style('font-size', '15px')
+      .style('font-weight', 'bold').style('pointer-events', 'none')
+      .style('opacity', 0).style('z-index', 1000)
+      .style('box-shadow', '0 10px 15px -3px rgba(0,0,0,0.4)');
+    var caPathData = 'M103.5 125.8C103.5 125.8 116.5 28.5 116.5 28.5C116.5 28.5 282.8 28.5 282.8 28.5C282.8 28.5 282.8 243.8 282.8 243.8C282.8 243.8 593.5 561.8 593.5 561.8C593.5 561.8 593.5 613.5 593.5 613.5C593.5 613.5 632.5 647.5 632.5 647.5C632.5 647.5 649.5 683.5 649.5 683.5C649.5 683.5 683.5 683.5 683.5 683.5C683.5 683.5 733.5 733.5 733.5 733.5C733.5 733.5 753.5 733.5 753.5 733.5C753.5 733.5 765.5 765.5 765.5 765.5C765.5 765.5 765.5 825.5 765.5 825.5C765.5 825.5 735.5 825.5 735.5 825.5C735.5 825.5 725.5 813.5 725.5 813.5C725.5 813.5 683.5 813.5 683.5 813.5C683.5 813.5 673.5 825.5 673.5 825.5C673.5 825.5 633.5 825.5 633.5 825.5C633.5 825.5 613.5 803.5 613.5 803.5C613.5 803.5 593.5 793.5 593.5 793.5C593.5 793.5 573.5 773.5 573.5 773.5C573.5 773.5 553.5 773.5 553.5 773.5C553.5 773.5 523.5 763.5 523.5 763.5C523.5 763.5 493.5 763.5 493.5 763.5C493.5 763.5 463.5 743.5 463.5 743.5C463.5 743.5 433.5 743.5 433.5 743.5C433.5 743.5 393.5 703.5 393.5 703.5C393.5 703.5 363.5 703.5 363.5 703.5C363.5 703.5 333.5 663.5 333.5 663.5C333.5 663.5 313.5 663.5 313.5 663.5C313.5 663.5 283.5 633.5 283.5 633.5C283.5 633.5 263.5 633.5 263.5 633.5C263.5 633.5 243.5 603.5 243.5 603.5C243.5 603.5 213.5 583.5 213.5 583.5C213.5 583.5 183.5 553.5 183.5 553.5C183.5 553.5 163.5 523.5 163.5 523.5C163.5 523.5 153.5 493.5 153.5 493.5C153.5 493.5 133.5 473.5 133.5 473.5C133.5 473.5 123.5 453.5 123.5 453.5C123.5 453.5 103.5 423.5 103.5 423.5C103.5 423.5 93.5 393.5 93.5 393.5C93.5 393.5 83.5 363.5 83.5 363.5C83.5 363.5 73.5 333.5 73.5 333.5C73.5 333.5 83.5 313.5 83.5 313.5C83.5 313.5 83.5 283.5 83.5 283.5C83.5 283.5 73.5 253.5 73.5 253.5C73.5 253.5 63.5 223.5 63.5 223.5C63.5 223.5 53.5 203.5 53.5 203.5C53.5 203.5 63.5 183.5 63.5 183.5C63.5 183.5 83.5 153.5 83.5 153.5C83.5 153.5 103.5 125.8 103.5 125.8Z';
+    var isMobile = window.innerWidth < 768;
+    var scale = isMobile ? 4.3 : 9.5;
+    var shiftX = isMobile ? 1500 : 7000;
+    var shiftY = isMobile ? 1700 : 3500;
+    var tx = (width / 2) + shiftX;
+    var ty = (height / 2) + shiftY;
+    var mapGroup = svg.append('g')
+      .attr('transform', 'translate(' + tx + ',' + ty + ') scale(' + scale + ')');
+    mapGroup.append('path').attr('d', caPathData)
+      .attr('transform', 'translate(-400,-400)')
+      .style('fill', 'rgba(0,0,0,0.15)')
+      .style('stroke', 'rgba(255,255,255,0.35)')
+      .style('stroke-width', 2 / scale);
+    var locations = [
+      { name: 'Bakersfield', x: 450, y: 580, isPrimary: true },
+      { name: 'Los Angeles County', x: 520, y: 660, isPrimary: true },
+      { name: 'Fresno County', x: 360, y: 480, isPrimary: true },
+      { name: 'Orange County', x: 550, y: 680, isPrimary: true },
+      { name: 'Riverside County', x: 600, y: 670, isPrimary: true },
+      { name: 'Sacramento', x: 260, y: 310, isPrimary: true },
+      { name: 'San Diego County', x: 620, y: 750, isPrimary: true },
+      { name: 'Bay Area', x: 150, y: 360, isPrimary: true },
+      { name: 'San Jose', x: 180, y: 390, isPrimary: true },
+      { name: 'Redding', x: 190, y: 150 }, { name: 'Chico', x: 220, y: 220 },
+      { name: 'Santa Rosa', x: 140, y: 330 }, { name: 'Stockton', x: 280, y: 370 },
+      { name: 'Modesto', x: 300, y: 400 }, { name: 'Salinas', x: 230, y: 460 },
+      { name: 'San Luis Obispo', x: 320, y: 580 }, { name: 'Santa Barbara', x: 410, y: 640 },
+      { name: 'Ventura', x: 460, y: 650 }, { name: 'San Bernardino', x: 580, y: 650 },
+      { name: 'Palm Springs', x: 650, y: 690 }, { name: 'El Centro', x: 700, y: 800 },
+      { name: 'Visalia', x: 400, y: 510 }, { name: 'Merced', x: 340, y: 430 },
+      { name: 'Monterey', x: 210, y: 450 }, { name: 'Santa Cruz', x: 180, y: 430 },
+      { name: 'Napa', x: 180, y: 340 }
+    ];
+    var markers = mapGroup.selectAll('.marker-group').data(locations).enter()
+      .append('g').attr('class', 'marker-group')
+      .attr('transform', function(d) { return 'translate(' + (d.x - 455) + ',' + (d.y - 400) + ')'; })
+      .style('cursor', 'pointer');
+    markers.append('circle').attr('class', 'aura')
+      .attr('r', function(d) { return d.isPrimary ? 10 : 6; })
+      .style('fill', 'rgba(255,255,255,0.5)').style('opacity', 0);
+    markers.append('circle').attr('class', 'dot')
+      .attr('r', function(d) { return d.isPrimary ? 6 : 4; })
+      .style('fill', '#ffffff').style('stroke', '#cc0000').style('stroke-width', 1.5);
+    markers.on('mouseover', function(event, d) {
+      d3.select(this).select('.dot').transition().duration(200).attr('r', d.isPrimary ? 9 : 6);
+      tooltip.transition().duration(200).style('opacity', 1);
+      tooltip.html(d.name)
+        .style('left', (event.pageX + 15) + 'px')
+        .style('top', (event.pageY - 28) + 'px');
+    }).on('mouseout', function(event, d) {
+      d3.select(this).select('.dot').transition().duration(300).attr('r', d.isPrimary ? 6 : 4);
+      tooltip.transition().duration(500).style('opacity', 0);
     });
-  </script>
+    anime({
+      targets: '.aura',
+      r: [
+        { value: function(el) { return parseFloat(el.getAttribute('r')); }, duration: 0 },
+        { value: function(el) { return parseFloat(el.getAttribute('r')) * 3.5; }, duration: 600, easing: 'easeOutSine' },
+        { value: function(el) { return parseFloat(el.getAttribute('r')); }, duration: 800, easing: 'easeInSine' }
+      ],
+      opacity: [
+        { value: 0.8, duration: 0 },
+        { value: 0, duration: 600, easing: 'easeOutSine' },
+        { value: 0, duration: 800, easing: 'linear' }
+      ],
+      loop: true
+    });
+  }
+})();
+</script>
 </section>
 
     <!-- REVIEWS -->
@@ -888,6 +865,7 @@ const shiftY = isMobile ? 1700 : 3500;
   })();
 </script>
 
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EG7JCG2R1Z');</script>
 </body>
 
 </html>
