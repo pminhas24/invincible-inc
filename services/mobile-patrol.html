@@ -237,7 +237,8 @@
       <div class="hero-card" style="box-shadow:var(--shadow-lg);">
         <div class="card-title">Get Your Free Mobile Patrol Quote</div>
         <form action="/thank-you.html" method="post" data-netlify="true" name="quote-request" novalidate>
-          <input type="hidden" name="bot-field" />
+          <input type="hidden" name="form-name" value="quote-request" />
+<input type="hidden" name="bot-field" />
           <input type="hidden" name="source-page" value="mobile-patrol" />
           <div class="form-row"><div class="form-group"><label for="mp-name">Full Name *</label><input type="text" id="mp-name" name="name" placeholder="Your Name" required /></div><div class="form-group"><label for="mp-phone">Phone *</label><input type="tel" id="mp-phone" name="phone" placeholder="(661) 000-0000" required /></div></div>
           <div class="form-group"><label for="mp-email">Email *</label><input type="email" id="mp-email" name="email" placeholder="you@company.com" required /></div>

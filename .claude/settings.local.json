@@ -18,7 +18,10 @@
       "Bash(pip3 install *)",
       "Bash(python -c \"from PIL import Image; print\\('ok'\\)\")",
       "Read(//c/Users/sarda/AppData/Roaming/Python//**)",
-      "Bash(python *)"
+      "Bash(python *)",
+      "Bash(git commit -m ' *)",
+      "Skill(superpowers:writing-plans)",
+      "PowerShell(node --version; python --version; python3 --version 2>$null)"
     ]
   }
 }
