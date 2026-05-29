@@ -15,10 +15,9 @@ document.addEventListener('DOMContentLoaded', function () {
     document.head.appendChild(gScript);
 
     window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', 'G-EG7JCG2R1Z');
+    window.gtag = function(){ window.dataLayer.push(arguments); }
+    window.gtag('js', new Date());
+    window.gtag('config', 'G-EG7JCG2R1Z');
   }
 
   ['scroll', 'click', 'keydown', 'touchstart'].forEach(function(evt) {
