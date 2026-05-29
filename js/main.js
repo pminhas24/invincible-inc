@@ -4,6 +4,27 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  /* ---------- Analytics (GA4) — delayed until interaction ---------- */
+  function loadAnalytics() {
+    if (window._analyticsLoaded) return;
+    window._analyticsLoaded = true;
+
+    var gScript = document.createElement('script');
+    gScript.async = true;
+    gScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-EG7JCG2R1Z';
+    document.head.appendChild(gScript);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'G-EG7JCG2R1Z');
+  }
+
+  ['scroll', 'click', 'keydown', 'touchstart'].forEach(function(evt) {
+    window.addEventListener(evt, loadAnalytics, { once: true, passive: true });
+  });
+
   /* ---------- Sticky Navbar Shadow ---------- */
   const navbar = document.querySelector('.navbar');
   if (navbar) {
@@ -295,30 +316,30 @@ document.addEventListener('DOMContentLoaded', function () {
     reveals.forEach(function (el) { el.classList.add('visible'); });
   }
 
-/* ---------- Active Nav Link ---------- */
-var currentPath = window.location.pathname.replace(/\/$/, '');
-var currentHash = window.location.hash;
+  /* ---------- Active Nav Link ---------- */
+  var currentPath = window.location.pathname.replace(/\/$/, '');
+  var currentHash = window.location.hash;
 
-document.querySelectorAll('.nav-links a').forEach(function (link) {
-  link.classList.remove('active');
+  document.querySelectorAll('.nav-links a').forEach(function (link) {
+    link.classList.remove('active');
 
-  var rawHref = link.getAttribute('href') || '';
-  if (!rawHref || rawHref === '#') return;
+    var rawHref = link.getAttribute('href') || '';
+    if (!rawHref || rawHref === '#') return;
 
-  var linkUrl = new URL(link.href, window.location.href);
-  var linkPath = linkUrl.pathname.replace(/\/$/, '');
-  var linkHash = linkUrl.hash;
+    var linkUrl = new URL(link.href, window.location.href);
+    var linkPath = linkUrl.pathname.replace(/\/$/, '');
+    var linkHash = linkUrl.hash;
 
-  if (currentHash) {
-    if (linkPath === currentPath && linkHash === currentHash) {
+    if (currentHash) {
+      if (linkPath === currentPath && linkHash === currentHash) {
+        link.classList.add('active');
+      }
+      return;
+    }
+
+    if (!linkHash && linkPath === currentPath) {
       link.classList.add('active');
     }
-    return;
-  }
-
-  if (!linkHash && linkPath === currentPath) {
-    link.classList.add('active');
-  }
-});
+  });
 
 });
