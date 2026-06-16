@@ -21,7 +21,8 @@
       "Bash(python *)",
       "Bash(git commit -m ' *)",
       "Skill(superpowers:writing-plans)",
-      "PowerShell(node --version; python --version; python3 --version 2>$null)"
+      "PowerShell(node --version; python --version; python3 --version 2>$null)",
+      "Bash(npm run *)"
     ]
   }
 }
