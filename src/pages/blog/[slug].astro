@@ -1,0 +1,162 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import { PortableText } from 'astro-portabletext';
+import { sanity } from '../../lib/sanity';
+import { urlFor } from '../../lib/image';
+import { postSlugsQuery, postBySlugQuery } from '../../lib/queries';
+import { readingTimeMinutes } from '../../lib/readingTime';
+
+export async function getStaticPaths() {
+  const slugs: string[] = await sanity.fetch(postSlugsQuery);
+  return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const post = await sanity.fetch(postBySlugQuery, { slug });
+if (!post) return Astro.redirect('/blog');
+
+const minutes = readingTimeMinutes(post.body);
+const date = new Date(post.publishedAt).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+const hero = urlFor(post.featuredImage).width(1200).height(630).fit('crop').auto('format').url();
+const canonical = new URL(`/blog/${post.slug}`, Astro.site).href;
+const ogImg = post.ogImage ? urlFor(post.ogImage).width(1200).height(630).url() : hero;
+
+const SITE = 'https://invinciblesecuritygroup.com';
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.seoDescription ?? post.excerpt,
+    image: ogImg,
+    datePublished: post.publishedAt,
+    dateModified: post._updatedAt,
+    author: { '@type': 'Person', name: post.author?.name },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Invincible Security Group',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE}/images/logo-invincible-security-group.png`,
+      },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: canonical },
+    ],
+  },
+];
+---
+<BlogLayout
+  title={post.seoTitle ?? post.title}
+  description={post.seoDescription ?? post.excerpt}
+  canonical={canonical}
+  ogImage={ogImg}
+  jsonLd={jsonLd}
+>
+  <article class="blog-article container">
+    <nav class="breadcrumb"><a href="/">Home</a> / <a href="/blog">Blog</a> / <span>{post.title}</span></nav>
+    <h1>{post.title}</h1>
+    {post.excerpt && <p class="article-lead">{post.excerpt}</p>}
+    <div class="article-meta">
+      {post.author?.name && <span>{post.author.name}</span>}
+      <span>·</span><time datetime={post.publishedAt}>{date}</time>
+      <span>·</span><span>{minutes} min read</span>
+      {post.category && <><span>·</span><span>{post.category.title}</span></>}
+    </div>
+    <img class="article-hero" src={hero} alt={post.featuredImage?.alt ?? post.title} width="1200" height="630" />
+    <div class="article-body">
+      <PortableText value={post.body} />
+    </div>
+
+    <aside class="article-cta">
+      <h2>Need security you can count on?</h2>
+      <p>Talk to Invincible Security Group about protecting your people, property, and peace of mind.</p>
+      <a class="btn btn-red" href="/get-a-quote.html">Get a Free Quote</a>
+    </aside>
+  </article>
+</BlogLayout>
+
+<style>
+  .blog-article {
+    max-width: 760px;
+    padding: 40px 20px 80px;
+  }
+  .breadcrumb {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-bottom: 20px;
+  }
+  .breadcrumb a {
+    color: #cc0000;
+    text-decoration: none;
+  }
+  .blog-article h1 {
+    color: #1b2a4a;
+    font-size: 2.1rem;
+    line-height: 1.25;
+    margin: 0 0 16px;
+  }
+  .article-lead {
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: #475569;
+    margin: 0 0 20px;
+  }
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    font-size: 0.88rem;
+    color: #64748b;
+    margin-bottom: 28px;
+  }
+  .article-hero {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 32px;
+  }
+  .article-body {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #1f2937;
+  }
+  .article-body :global(h2) {
+    color: #1b2a4a;
+    margin-top: 1.6em;
+  }
+  .article-body :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  .article-cta {
+    margin-top: 48px;
+    padding: 32px;
+    background: #1b2a4a;
+    border-radius: 12px;
+    color: #fff;
+    text-align: center;
+  }
+  .article-cta h2 {
+    margin: 0 0 10px;
+    color: #fff;
+  }
+  .article-cta p {
+    margin: 0 0 20px;
+    color: #cbd5e1;
+  }
+</style>

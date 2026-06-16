@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Standardize on the non-www apex domain (matches robots.txt / canonical).
+# If the Netlify primary domain is www, invert this redirect instead.
+[[redirects]]
+  from = "https://www.invinciblesecuritygroup.com/*"
+  to = "https://invinciblesecuritygroup.com/:splat"
+  status = 301
+  force = true

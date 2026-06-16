@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage?: string;
+  jsonLd?: Record<string, unknown>[];
+}
+const { title, description, canonical, ogImage, jsonLd } = Astro.props;
+const og = ogImage ?? 'https://invinciblesecuritygroup.com/images/hero.webp';
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={og} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={og} />
+
+{jsonLd?.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

@@ -1,0 +1,37 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { sanity } from '../../lib/sanity';
+import { postsListQuery } from '../../lib/queries';
+
+const posts = await sanity.fetch(postsListQuery);
+const canonical = new URL('/blog', Astro.site).href;
+---
+<BlogLayout
+  title="Security Blog & Resources | Invincible Security Group"
+  description="Guides and insights on security guard services, fire watch, mobile patrol, construction site security, and event security across California."
+  canonical={canonical}
+>
+  <section class="blog-listing container">
+    <h1>Security Insights & Resources</h1>
+    <div class="blog-grid">
+      {posts.map((post: any) => <ArticleCard post={post} />)}
+    </div>
+  </section>
+</BlogLayout>
+
+<style>
+  .blog-listing {
+    padding: 60px 20px 80px;
+  }
+  .blog-listing h1 {
+    color: #1b2a4a;
+    font-size: 2rem;
+    margin: 0 0 32px;
+  }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+  }
+</style>
