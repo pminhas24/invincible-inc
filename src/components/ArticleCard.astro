@@ -1,0 +1,87 @@
+---
+import { urlFor } from '../lib/image';
+
+interface Props {
+  post: {
+    title: string;
+    slug: string;
+    excerpt: string;
+    publishedAt: string;
+    featuredImage: any;
+    category?: { title: string };
+  };
+}
+const { post } = Astro.props;
+const img = urlFor(post.featuredImage).width(600).height(400).fit('crop').auto('format').url();
+const date = new Date(post.publishedAt).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+<article class="blog-card">
+  <a href={`/blog/${post.slug}`}>
+    <img src={img} alt={post.featuredImage?.alt ?? post.title} width="600" height="400" loading="lazy" />
+    <div class="blog-card-body">
+      {post.category && <span class="blog-card-cat">{post.category.title}</span>}
+      <h2>{post.title}</h2>
+      <p>{post.excerpt}</p>
+      <time datetime={post.publishedAt}>{date}</time>
+    </div>
+  </a>
+</article>
+
+<style>
+  .blog-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(27, 42, 74, 0.06);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .blog-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(27, 42, 74, 0.12);
+  }
+  .blog-card a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+  .blog-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+  .blog-card-body {
+    padding: 20px;
+  }
+  .blog-card-cat {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #cc0000;
+    margin-bottom: 10px;
+  }
+  .blog-card-body h2 {
+    font-size: 1.2rem;
+    line-height: 1.35;
+    color: #1b2a4a;
+    margin: 0 0 10px;
+  }
+  .blog-card-body p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #475569;
+    margin: 0 0 14px;
+  }
+  .blog-card-body time {
+    font-size: 0.82rem;
+    color: #94a3b8;
+  }
+</style>
