@@ -4,25 +4,10 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---------- Analytics (GA4) — delayed until interaction ---------- */
-  function loadAnalytics() {
-    if (window._analyticsLoaded) return;
-    window._analyticsLoaded = true;
-
-    var gScript = document.createElement('script');
-    gScript.async = true;
-    gScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-EG7JCG2R1Z';
-    document.head.appendChild(gScript);
-
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function(){ window.dataLayer.push(arguments); }
-    window.gtag('js', new Date());
-    window.gtag('config', 'G-EG7JCG2R1Z');
-  }
-
-  ['scroll', 'click', 'keydown', 'touchstart'].forEach(function(evt) {
-    window.addEventListener(evt, loadAnalytics, { once: true, passive: true });
-  });
+  /* ---------- Analytics (GA4) ----------
+     The Google tag (gtag.js) is loaded directly in the <head> of every page
+     so it fires a page_view on load. See the GA4 snippet in each static page
+     and in src/layouts/BlogLayout.astro. Do not add a duplicate loader here. */
 
   /* ---------- Sticky Navbar Shadow ---------- */
   const navbar = document.querySelector('.navbar');
