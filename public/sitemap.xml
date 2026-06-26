@@ -122,6 +122,58 @@
     <changefreq>monthly</changefreq>
   </url>
 
+  <!-- Location Pages -->
+  <url>
+    <loc>https://invinciblesecuritygroup.com/locations/</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://invinciblesecuritygroup.com/locations/bakersfield-ca-security-guards.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://invinciblesecuritygroup.com/locations/los-angeles-county-ca-security-guards.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://invinciblesecuritygroup.com/locations/fresno-county-ca-security-guards.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://invinciblesecuritygroup.com/locations/orange-county-ca-security-guards.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://invinciblesecuritygroup.com/locations/riverside-county-ca-security-guards.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://invinciblesecuritygroup.com/locations/sacramento-ca-security-guards.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://invinciblesecuritygroup.com/locations/san-diego-county-ca-security-guards.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://invinciblesecuritygroup.com/locations/bay-area-ca-security-guards.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://invinciblesecuritygroup.com/locations/san-jose-ca-security-guards.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
   <!-- Legal Pages -->
   <url>
     <loc>https://invinciblesecuritygroup.com/privacy-policy.html</loc>
