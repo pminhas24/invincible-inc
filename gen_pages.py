@@ -147,14 +147,15 @@ FOOTER_IND = '''  <footer class="footer" role="contentinfo">
   </footer>
   <script src="../js/main.js"></script>'''
 
-ANALYTICS = '''  <!-- Google Analytics 4 -->
-  <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-EG7JCG2R1Z"></script>
+ANALYTICS = '''  <!-- Google Tag Manager -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-EG7JCG2R1Z');
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TKKZPRCB');
   </script>
+  <!-- End Google Tag Manager -->
 
   <!-- Microsoft Clarity -->
   <script type="text/javascript" defer>
@@ -164,6 +165,13 @@ ANALYTICS = '''  <!-- Google Analytics 4 -->
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wkg1a7mvwq");
   </script>'''
+
+GTM_NOSCRIPT = '''<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKKZPRCB"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->'''
 
 def build_service_card(title, desc, link, icon_svg, delay=''):
     d = f' reveal-delay-{delay}' if delay else ''
@@ -232,6 +240,7 @@ def build_industry_page(
 {ANALYTICS}
 </head>
 <body>
+{GTM_NOSCRIPT}
 {TOP_BAR}
 
 {NAVBAR_IND}
@@ -616,6 +625,7 @@ def build_legal_page(title, h1, last_updated, content_html):
 {ANALYTICS}
 </head>
 <body>
+{GTM_NOSCRIPT}
 {TOP_BAR}
 
 {NAVBAR_ROOT}
