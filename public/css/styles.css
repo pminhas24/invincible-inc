@@ -179,6 +179,26 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
 .dropdown-label { font-size: 0.72rem !important; font-weight: 700 !important; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-text) !important; padding-bottom: 6px !important; border-bottom: 1px solid #eee; margin-bottom: 4px; pointer-events: none; }
 .dropdown-label:hover { background: none !important; color: var(--gray-text) !important; }
 
+/* Mega dropdown (flat grid of items — used by Areas We Serve) */
+.dropdown-menu.dropdown-mega { min-width: 600px; left: 50%; margin-left: -300px; padding: 8px 0 0; }
+.dropdown-mega .dropdown-label { margin-bottom: 8px; }
+.dropdown-mega-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px 4px; padding: 0 12px 10px; }
+.dropdown-mega-grid a { padding: 9px 12px !important; border-radius: 4px; }
+.dropdown-mega-footer {
+  border-top: 1px solid #eee;
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--red) !important;
+}
+.dropdown-mega-footer:hover { background: var(--light-gray); color: var(--red) !important; }
+
+@media (max-width: 1180px) {
+  .dropdown-menu.dropdown-mega { min-width: 440px; margin-left: -220px; }
+  .dropdown-mega-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 /* Nav CTA */
 .nav-cta {
   background: var(--red) !important;
