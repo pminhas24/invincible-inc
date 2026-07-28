@@ -24,7 +24,10 @@
       "PowerShell(node --version; python --version; python3 --version 2>$null)",
       "Bash(py --version)",
       "Bash(rm -f add_blog_nav.py)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(sed 's/^[[:space:]]*//')",
+      "Bash(git check-ignore *)",
+      "Bash(echo \"rc=$?\")"
     ]
   }
 }
