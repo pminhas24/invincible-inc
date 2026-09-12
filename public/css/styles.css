@@ -151,7 +151,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
   background: var(--white);
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-lg);
-  min-width: 240px;
+  min-width: 268px;
   padding: 8px 0 0;
   opacity: 0;
   visibility: hidden;
@@ -988,4 +988,50 @@ svg { max-width: 44px; height: auto; display: inline-block; }
   .clients-logos .client-box:last-child {
     grid-column: 1 / -1 !important;
   }
+}
+
+
+/* ---------- AI Parking Lot: Layered Model (flow / comparison / add-on) ---------- */
+.svc-flow { background: var(--navy); padding: 80px 0; color: var(--white); }
+.svc-flow .flow-label { color: #ff6b6b; }
+.svc-flow .flow-heading { color: var(--white); }
+.svc-flow .flow-sub { color: rgba(255,255,255,0.78); }
+.flow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.flow-step { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 10px; padding: 32px 26px; position: relative; }
+.flow-num { width: 40px; height: 40px; border-radius: 50%; background: var(--red); color: var(--white); font-weight: 800; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.flow-step h3 { font-size: 1.05rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+.flow-step p { font-size: 0.87rem; color: rgba(255,255,255,0.80); line-height: 1.65; }
+.flow-note { margin-top: 32px; text-align: center; font-size: 0.92rem; color: rgba(255,255,255,0.72); max-width: 760px; margin-left: auto; margin-right: auto; }
+
+.layer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+.layer-card { background: var(--white); border-radius: 10px; padding: 30px 24px; box-shadow: var(--shadow); border-top: 4px solid #d5d5d5; }
+.layer-card-best { border-top-color: var(--red); box-shadow: var(--shadow-lg); }
+.layer-tag { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-text); margin-bottom: 10px; }
+.layer-card-best .layer-tag { color: var(--red); }
+.layer-card h3 { font-size: 1.0rem; font-weight: 800; color: var(--navy); margin-bottom: 18px; }
+.layer-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 11px; }
+.layer-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.86rem; line-height: 1.55; color: var(--gray-text); }
+.layer-list .li { flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; margin-top: 1px; }
+.layer-list li.yes .li { background: rgba(27,42,74,0.10); color: var(--navy); }
+.layer-card-best .layer-list li.yes .li { background: rgba(204,0,0,0.12); color: var(--red); }
+.layer-list li.no { color: #8a8a8a; }
+.layer-list li.no .li { background: #ededed; color: #9a9a9a; }
+
+.svc-addon { background: var(--white); padding: 80px 0; }
+.addon-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.addon-card { display: block; border: 1.5px solid #e8e8e8; border-radius: 10px; padding: 26px 22px; text-decoration: none; transition: all var(--transition); }
+.addon-card:hover { border-color: var(--red); box-shadow: var(--shadow); transform: translateY(-3px); }
+.addon-card h3 { font-size: 0.98rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+.addon-card p { font-size: 0.83rem; color: var(--gray-text); line-height: 1.55; margin-bottom: 14px; }
+.addon-link { font-size: 0.80rem; font-weight: 700; color: var(--red); }
+
+@media (max-width: 1100px) {
+  .flow-grid,
+  .layer-grid { grid-template-columns: 1fr; }
+  .addon-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .svc-flow,
+  .svc-addon { padding-top: 64px; padding-bottom: 64px; }
+  .addon-grid { grid-template-columns: 1fr; }
 }
